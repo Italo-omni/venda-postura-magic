@@ -1,6 +1,9 @@
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative bg-secondary py-20 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -13,8 +16,9 @@ export const HeroSection = () => {
               A almofada ergonômica que o Brasil ama, ideal para escritório, casa ou viagens.
               Suporte perfeito para quadril e lombar.
             </p>
-            <button onClick={() => document.getElementById('comprar')?.scrollIntoView({ behavior: 'smooth' })} 
-                    className="cta-button inline-flex items-center gap-2">
+            <button 
+              onClick={() => navigate("/checkout")}
+              className="cta-button inline-flex items-center gap-2">
               Peça Agora e Transforme Sua Postura! <ArrowRight className="w-5 h-5" />
             </button>
           </div>
