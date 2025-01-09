@@ -23,7 +23,7 @@ export const HeroSection = () => {
             </button>
           </div>
           <div className="flex-1">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/wLv2QMC_GyQ?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&playlist=j01yGLRxKNY&controls=0&showinfo=0&fs=0&iv_load_policy=3&autohide=1&cc_load_policy=0&playsinline=1" allow="autoplay; encrypted-media" ></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/wLv2QMC_GyQ?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&controls=0&showinfo=0&fs=0&iv_load_policy=3&autohide=1&cc_load_policy=0&playsinline=1" allow="autoplay; encrypted-media" ></iframe>
 
           </div>
         </div>
