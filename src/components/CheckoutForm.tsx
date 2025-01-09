@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/utils/metaPixel";
+import { ProductSummary } from "./checkout/ProductSummary";
+import { FormActions } from "./checkout/FormActions";
 
 interface FormData {
   nome: string;
@@ -65,6 +66,8 @@ export const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <ProductSummary />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -184,19 +187,7 @@ export const CheckoutForm = () => {
         </div>
       </div>
 
-      <div className="flex gap-4 pt-4">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => navigate("/")}
-          className="flex-1"
-        >
-          Voltar
-        </Button>
-        <Button type="submit" className="flex-1 bg-cta hover:bg-cta/90">
-          Finalizar Pagamento
-        </Button>
-      </div>
+      <FormActions />
     </form>
   );
 };
