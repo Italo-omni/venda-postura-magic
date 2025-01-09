@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/utils/metaPixel";
@@ -17,6 +18,7 @@ interface FormData {
 }
 
 export const CheckoutForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     nome: "",
     email: "",
