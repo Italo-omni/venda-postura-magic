@@ -23,8 +23,20 @@ export const HeroSection = () => {
             </button>
           </div>
           <div className="flex-1">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/j01yGLRxKNY?autoplay=1&mute=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
+            <div className="relative w-full">
+              {/* Container do vídeo com máscara */}
+              <div className="relative w-full pt-[56.25%]"> {/* Mantém aspect ratio 16:9 */}
+                <iframe 
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/j01yGLRxKNY?autoplay=1&mute=1&rel=0&modestbranding=1" 
+                  frameBorder="0" 
+                  allow="autoplay; encrypted-media" 
+                  allowFullScreen
+                />
+                {/* Máscara para o nome do canal */}
+                <div className="absolute top-0 left-0 w-32 h-8 bg-secondary z-10" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
