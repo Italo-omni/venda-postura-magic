@@ -47,22 +47,13 @@ export const CheckoutForm = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Track Lead
     trackEvent('Lead', {
       content_name: 'Almofada Ergonômica Corretora de Postura',
       content_category: 'form',
-      value: 197.00,
-      currency: 'BRL'
-    });
-    
-    // Track Purchase
-    trackEvent('Purchase', {
-      content_name: 'Almofada Ergonômica Corretora de Postura',
-      content_type: 'product',
-      content_ids: ['ALMOFADA001'],
       value: 197.00,
       currency: 'BRL'
     });
@@ -93,7 +84,10 @@ Valor: R$ 197,00
 `.trim();
 
     const encodedMessage = encodeURIComponent(message);
+    
+    // Open WhatsApp in a new window and navigate to success page
     window.open(`https://api.whatsapp.com/send?phone=5527992758442&text=${encodedMessage}`, "_blank");
+    navigate("/success");
   };
 
   return (
