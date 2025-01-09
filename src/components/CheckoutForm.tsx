@@ -60,8 +60,8 @@ export const CheckoutForm = () => {
     });
 
     // Open Mercado Pago payment link in a new window and navigate to success page
-    window.open('https://mpago.la/1soAe1H', "_blank");
-    navigate("/success");
+    window.open('https://mpago.la/1soAe1H', "_self");
+    //navigate("/success");
   };
 
   return (
