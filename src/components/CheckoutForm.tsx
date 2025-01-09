@@ -18,6 +18,7 @@ interface FormData {
   estado: string;
 }
 
+
 export const CheckoutForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
