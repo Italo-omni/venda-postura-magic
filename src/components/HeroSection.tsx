@@ -23,11 +23,8 @@ export const HeroSection = () => {
             </button>
           </div>
           <div className="flex-1">
-            <img 
-              src="https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp"
-              alt="Almofada Ergonômica"
-              className="rounded-lg shadow-2xl w-full"
-            />
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/j01yGLRxKNY?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
           </div>
         </div>
       </div>
