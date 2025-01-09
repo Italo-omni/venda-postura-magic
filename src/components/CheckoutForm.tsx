@@ -58,35 +58,8 @@ export const CheckoutForm = () => {
       currency: 'BRL'
     });
 
-    // Monta a mensagem para o WhatsApp
-    const message = `
-🛍️ *NOVO PEDIDO - ALMOFADA ERGONÔMICA*
-
-*Dados do Cliente:*
-Nome: ${formData.nome}
-Email: ${formData.email}
-Telefone: ${formData.telefone}
-
-*Endereço de Entrega:*
-${formData.endereco}, ${formData.numero}
-${formData.complemento ? `Complemento: ${formData.complemento}` : ""}
-${formData.bairro} - ${formData.cidade}/${formData.estado}
-CEP: ${formData.cep}
-
-*Produto:*
-Almofada Ergonômica Corretora de Postura
-Valor: R$ 197,00
-
-*Observações:*
-✅ Produto em estoque
-🚚 Envio imediato
-⭐ Mais de 50.000 clientes satisfeitos
-`.trim();
-
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Open WhatsApp in a new window and navigate to success page
-    window.open(`https://api.whatsapp.com/send?phone=5527992758442&text=${encodedMessage}`, "_blank");
+    // Open Mercado Pago payment link in a new window and navigate to success page
+    window.open('https://mpago.la/1soAe1H', "_blank");
     navigate("/success");
   };
 
@@ -221,7 +194,7 @@ Valor: R$ 197,00
           Voltar
         </Button>
         <Button type="submit" className="flex-1 bg-cta hover:bg-cta/90">
-          Finalizar Pedido no WhatsApp
+          Finalizar Pagamento
         </Button>
       </div>
     </form>
