@@ -1,51 +1,8 @@
-import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Carrega a API do YouTube quando o componente for montado
-    const script = document.createElement("script");
-    script.src = "https://www.youtube.com/iframe_api";
-    script.async = true;
-    document.body.appendChild(script);
-
-    // Cleanup para remover o script após o componente ser desmontado
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Esta função será chamada assim que a API estiver carregada
-    window.onYouTubeIframeAPIReady = () => {
-      new window.YT.Player("video-player", {
-        videoId: "j01yGLRxKNY",  // ID do vídeo
-        playerVars: {
-          autoplay: 1,          // Inicia o vídeo automaticamente
-          mute: 1,              // Mute o áudio
-          loop: 1,              // Loop infinito
-          playlist: "j01yGLRxKNY", // Para o loop funcionar
-          controls: 0,          // Remove os controles
-          showinfo: 0,          // Remove o título e o canal
-          rel: 0,               // Remove vídeos relacionados no final
-          modestbranding: 1,    // Remove o logo do YouTube
-          fs: 0,                // Desabilita o botão de tela cheia
-          iv_load_policy: 3,    // Remove anotações
-          autohide: 1,          // Esconde os controles automaticamente
-          cc_load_policy: 0,    // Desabilita legendas automáticas
-          playsinline: 1        // Reproduz inline em dispositivos móveis
-        },
-        events: {
-          onReady: (event) => {
-            event.target.playVideo(); // Inicia o vídeo quando o player estiver pronto
-          }
-        }
-      });
-    };
-  }, []);
 
   return (
     <div className="relative bg-secondary py-20 px-4">
@@ -66,8 +23,8 @@ export const HeroSection = () => {
             </button>
           </div>
           <div className="flex-1">
-            {/* O container do player será preenchido com o vídeo via YouTube Iframe API */}
-            <div id="video-player"></div>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/wLv2QMC_GyQ?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&playlist=j01yGLRxKNY&controls=0&showinfo=0&fs=0&iv_load_policy=3&autohide=1&cc_load_policy=0&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
           </div>
         </div>
       </div>
