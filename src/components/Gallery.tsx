@@ -1,13 +1,17 @@
 const images = [
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rfgy-m3dxdgc6a942d8.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rfg4-m3dxdi9jgqsi4c.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rffq-m3dxdk1wuktj8d.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rffh-m3dxdm2bwm6m19.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rfgv-m3dxdnco0r5419.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rffg-m3dxdoh6dixzf1.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rff5-m3dxdt4hkopz12.webp"
-];
+  
+  "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178agnv19.webp",
+  "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178bv8b86.webp",
+  "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178d9sr2e.webp",
+  "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178923fbe.webp",
+  "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms1787niz6b.webp",
+  "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xojmw3hkj9fb.webp",
+  "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xojmw3iz3pfd.webp",
+  "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp"
+  
+  ];
+  
+  
 
 export const Gallery = () => {
   return (
