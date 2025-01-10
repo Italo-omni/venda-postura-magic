@@ -30,7 +30,7 @@
 }
 
 .benefit-card {
-  @apply bg-white p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
+  @apply bg-white p-4 md:p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
 }
 
 .gallery-image {
@@ -38,14 +38,14 @@
 }
 
 .testimonial-card {
-  @apply bg-white p-6 rounded-lg shadow-md;
+  @apply bg-white p-4 md:p-6 rounded-lg shadow-md;
 }
 
 .cta-button {
-  @apply bg-cta text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg 
+  @apply bg-cta text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full text-base md:text-lg shadow-lg 
          hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105;
 }
 
 .floating-cta {
-  @apply fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50;
+  @apply fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] md:w-auto;
 }
