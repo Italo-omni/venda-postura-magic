@@ -1,44 +1,50 @@
-import { CheckCircle, Award, Repeat, Heart } from "lucide-react";
+import { CheckCircle, Award, Repeat, Heart, Star } from "lucide-react";
 
 const benefits = [
   {
     icon: <CheckCircle className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
-    title: "Tecnologia Premium",
-    description: "Design ergonômico que se adapta ao seu corpo"
+    title: "Tecnologia Exclusiva",
+    description: "Design ergonômico patenteado que se adapta ao seu corpo"
   },
   {
-    icon: <Heart className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
-    title: "Resultados Reais",
-    description: "95% dos clientes relatam alívio em 2 semanas"
+    icon: <Star className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
+    title: "95% de Aprovação",
+    description: "Resultados comprovados em 2 semanas de uso"
   },
   {
     icon: <Award className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
-    title: "Alta Qualidade",
+    title: "Máxima Qualidade",
     description: "Material premium com tecnologia respirável"
   },
   {
-    icon: <Repeat className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
-    title: "Leve Onde Quiser",
-    description: "Ideal para casa, escritório e viagens"
+    icon: <Heart className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
+    title: "Use em Todo Lugar",
+    description: "Perfeito para casa, trabalho e viagens"
   }
 ];
 
 export const Benefits = () => {
   return (
-    <section className="py-12 md:py-20 px-4 bg-white">
+    <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto max-w-6xl">
-        <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4 px-2">
-          Por Que 50.000 Pessoas Escolheram?
-        </h2>
-        <p className="text-center text-gray-600 text-base md:text-lg mb-8 md:mb-12 max-w-3xl mx-auto px-2">
-          A solução definitiva para quem quer viver sem dor
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            Por Que Mais de 50 Mil Pessoas Confiam?
+          </h2>
+          <p className="text-gray-600 text-lg">
+            A solução definitiva para uma vida sem dores nas costas
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="benefit-card p-4 md:p-6">
-              <div className="mb-3 md:mb-4">{benefit.icon}</div>
-              <h3 className="font-heading text-lg md:text-xl font-bold mb-2">{benefit.title}</h3>
-              <p className="text-gray-600 text-sm md:text-base">{benefit.description}</p>
+            <div 
+              key={index} 
+              className="benefit-card hover:bg-blue-50 transition-colors duration-300"
+            >
+              <div className="mb-4 md:mb-6">{benefit.icon}</div>
+              <h3 className="font-heading text-xl font-bold mb-2">{benefit.title}</h3>
+              <p className="text-gray-600">{benefit.description}</p>
             </div>
           ))}
         </div>
