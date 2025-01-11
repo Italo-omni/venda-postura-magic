@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { trackEvent } from "@/utils/metaPixel";
 import { ProductSummary } from "./checkout/ProductSummary";
 import { FormActions } from "./checkout/FormActions";
+import { toast } from "sonner";
 
 interface FormData {
   nome: string;
@@ -17,7 +18,6 @@ interface FormData {
   cidade: string;
   estado: string;
 }
-
 
 export const CheckoutForm = () => {
   const navigate = useNavigate();
@@ -38,7 +38,6 @@ export const CheckoutForm = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
-    // Track AddPaymentInfo when user starts filling the form
     if (Object.values(formData).every(val => val === "") && value !== "") {
       trackEvent('AddPaymentInfo', {
         content_name: 'Almofada Ergonômica Corretora de Postura',
@@ -49,10 +48,48 @@ export const CheckoutForm = () => {
     }
   };
 
+  const sendEmail = async (data: FormData) => {
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'YOUR_SERVICE_ID',
+          template_id: 'YOUR_TEMPLATE_ID',
+          user_id: 'YOUR_USER_ID',
+          template_params: {
+            to_email: 'voltaratech2024@gmail.com',
+            from_name: data.nome,
+            from_email: data.email,
+            message: `Novo pedido recebido:
+              Nome: ${data.nome}
+              Email: ${data.email}
+              Telefone: ${data.telefone}
+              Endereço: ${data.endereco}, ${data.numero}
+              Complemento: ${data.complemento}
+              Bairro: ${data.bairro}
+              Cidade: ${data.cidade}
+              Estado: ${data.estado}
+              CEP: ${data.cep}`
+          }
+        })
+      });
+
+      if (response.ok) {
+        toast.success("Pedido recebido com sucesso!");
+      } else {
+        console.error("Erro ao enviar email");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar email:", error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Track Lead
     trackEvent('Lead', {
       content_name: 'Almofada Ergonômica Corretora de Postura',
       content_category: 'form',
@@ -60,13 +97,12 @@ export const CheckoutForm = () => {
       currency: 'BRL'
     });
 
-    // Open Mercado Pago payment link in a new window and navigate to success page
+    await sendEmail(formData);
     window.open('https://mpago.la/1soAe1H', "_self");
-    //navigate("/success");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <ProductSummary />
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -83,13 +119,14 @@ export const CheckoutForm = () => {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email
+            Email *
           </label>
           <Input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div>
