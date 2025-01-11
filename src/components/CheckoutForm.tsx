@@ -56,9 +56,9 @@ export const CheckoutForm = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'YOUR_SERVICE_ID',
-          template_id: 'YOUR_TEMPLATE_ID',
-          user_id: 'YOUR_USER_ID',
+          service_id: 'service_sqf0scb',
+          template_id: 'template_zift7dh',
+          user_id: 'OTDb0AsWpTzo3EDas',
           template_params: {
             to_email: 'voltaratech2024@gmail.com',
             from_name: data.nome,
