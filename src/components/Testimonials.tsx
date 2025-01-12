@@ -47,7 +47,7 @@ const testimonials = [
     role: "Aposentada, 67 anos",
     content: "Essa almofada transformou meu dia a dia! Consigo assistir TV e fazer crochê sem dores. Super confortável!",
     rating: 5,
-    imageSrc: "https://amenteemaravilhosa.com.br/wp-content/uploads/2017/06/mulher-idosa.jpg"
+    imageSrc: "https://tse2.mm.bing.net/th?id=OIP.tnXYc1A0UtFdb_5VgEKdVQHaHa&rs=1&pid=ImgDetMain"
   },
   {
     name: "Dona Maria José",
