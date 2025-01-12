@@ -26,7 +26,7 @@ export const FloatingCTA = () => {
   };
 
   return (
-    <div className="floating-cta fixed bottom-4 left-4 right-4 sm:left-auto sm:right-8 sm:bottom-8 z-50 flex justify-center sm:justify-end">
+    <div className="floating-cta fixed bottom-4 left-4 right-4 z-50 flex justify-center">
       <button
         id="comprar"
         onClick={handleClick}
@@ -37,4 +37,5 @@ export const FloatingCTA = () => {
       </button>
     </div>
   );
+  
 };
