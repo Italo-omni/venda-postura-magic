@@ -17,6 +17,10 @@ const Checkout = () => {
     });
   }, []);
 
+  const onCheckoutSuccess = () => {
+    navigate('/success', { state: { fromCheckout: true } });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-3xl mx-auto">
@@ -24,9 +28,7 @@ const Checkout = () => {
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
             Finalizar Pedido
           </h1>
-        
-
-          <CheckoutForm />
+          <CheckoutForm onSuccess={onCheckoutSuccess} />
         </div>
       </div>
     </div>
