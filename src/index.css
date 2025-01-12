@@ -58,12 +58,7 @@ body {
   @apply sm:left-[35%] md:left-[30%] lg:left-[25%];
 }
 
-/* Adicional para garantir alinhamento */
-.floating-cta {
-  display: flex;
-  justify-content: center; /* Garante centralização do conteúdo interno */
-  align-items: center; /* Centraliza verticalmente dentro do container */
-}
+
 
 
 /* Animations */
