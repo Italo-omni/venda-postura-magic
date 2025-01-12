@@ -41,30 +41,58 @@ const TestimonialCard = ({ testimonial }) => (
     </div>
   </div>
 );
-
 const testimonials = [
   {
     name: "Dona Helena",
     role: "Aposentada, 67 anos",
-    content: "Depois que minha filha me deu essa almofada, minha vida mudou! Eu sofria muito com dores nas costas, principalmente quando ficava sentada assistindo TV ou fazendo crochê. Agora consigo passar mais tempo com meus hobbies sem sentir aquele desconforto terrível. É muito fácil de usar e o tecido é bem macio.",
+    content: "Essa almofada transformou meu dia a dia! Consigo assistir TV e fazer crochê sem dores. Super confortável!",
     rating: 5,
     imageSrc: "https://amenteemaravilhosa.com.br/wp-content/uploads/2017/06/mulher-idosa.jpg"
   },
   {
     name: "Dona Maria José",
     role: "Professora aposentada, 70 anos",
-    content: "Que benção encontrar esse produto! Minhas dores nas costas melhoraram muito e agora consigo participar dos eventos da igreja com mais conforto. A almofada é leve, fácil de carregar e me ajuda a manter a postura correta. Indico para todas as minhas amigas do grupo da terceira idade.",
+    content: "Leve e prática! Minhas dores nas costas quase sumiram, até minhas amigas da igreja notaram minha melhora.",
     rating: 5,
     imageSrc: "https://thumbs.dreamstime.com/b/idosa-africana-rindo-negra-com-cabelo-grisalho-sentada-digna-e-orgulhosa-de-fundo-negro-220563586.jpg"
   },
   {
     name: "Dona Marisa",
     role: "Artesã, 65 anos",
-    content: "Maravilhosa! Tenho artrose e sempre sofri com dores ao ficar sentada fazendo meus trabalhos manuais. Desde que comecei a usar essa almofada, as dores diminuíram muito. Uso todos os dias e já notei uma grande diferença na minha qualidade de vida. O investimento valeu cada centavo!",
+    content: "Perfeita para quem sofre de artrose! Uso todos os dias e já sinto muito menos dor. Aprovadíssima!",
     rating: 5,
     imageSrc: "https://brecha.com.uy/wp-content/uploads/2024/04/27-Mariyse-Conde-w-680x1024.jpg"
+  },
+  {
+    name: "Seu João",
+    role: "Aposentado, 72 anos",
+    content: "Ficar sentado jogando dominó nunca foi tão confortável! A almofada é ótima para as costas.",
+    rating: 5,
+    imageSrc: "https://www.publicdomainpictures.net/pictures/320000/velka/idoso-com-chapeu.jpg"
+  },
+  {
+    name: "Dona Clarice",
+    role: "Cozinheira, 68 anos",
+    content: "Finalmente posso ficar horas cozinhando sem dores! O produto é maravilhoso e fácil de limpar.",
+    rating: 5,
+    imageSrc: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Idosa_sorrindo.jpg"
+  },
+  {
+    name: "Dona Neide",
+    role: "Costureira, 66 anos",
+    content: "Costuro por horas e nem percebo! Super confortável e prática. Recomendo para todo mundo.",
+    rating: 5,
+    imageSrc: "https://st2.depositphotos.com/4344959/6465/i/450/depositphotos_64651111-stock-photo-happy-elderly-woman.jpg"
+  },
+  {
+    name: "Seu Antônio",
+    role: "Motorista aposentado, 74 anos",
+    content: "Passei a dirigir por longas distâncias sem dor. É incrível o alívio que essa almofada proporciona!",
+    rating: 5,
+    imageSrc: "https://images.unsplash.com/photo-1519894359134-d65197f590da"
   }
 ];
+
 
 export const Testimonials = () => {
   return (
