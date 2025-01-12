@@ -68,28 +68,28 @@ const testimonials = [
     role: "Aposentado, 72 anos",
     content: "Ficar sentado jogando dominó nunca foi tão confortável! A almofada é ótima para as costas.",
     rating: 5,
-    imageSrc: "https://www.publicdomainpictures.net/pictures/320000/velka/idoso-com-chapeu.jpg"
+    imageSrc: "https://tse2.mm.bing.net/th?id=OIP.tnXYc1A0UtFdb_5VgEKdVQHaHa&rs=1&pid=ImgDetMain"
   },
   {
     name: "Dona Clarice",
     role: "Cozinheira, 68 anos",
     content: "Finalmente posso ficar horas cozinhando sem dores! O produto é maravilhoso e fácil de limpar.",
     rating: 5,
-    imageSrc: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Idosa_sorrindo.jpg"
+    imageSrc: "https://tse2.mm.bing.net/th?id=OIP.tnXYc1A0UtFdb_5VgEKdVQHaHa&rs=1&pid=ImgDetMain"
   },
   {
     name: "Dona Neide",
     role: "Costureira, 66 anos",
     content: "Costuro por horas e nem percebo! Super confortável e prática. Recomendo para todo mundo.",
     rating: 5,
-    imageSrc: "https://st2.depositphotos.com/4344959/6465/i/450/depositphotos_64651111-stock-photo-happy-elderly-woman.jpg"
+    imageSrc: "https://tse2.mm.bing.net/th?id=OIP.tnXYc1A0UtFdb_5VgEKdVQHaHa&rs=1&pid=ImgDetMain"
   },
   {
     name: "Seu Antônio",
     role: "Motorista aposentado, 74 anos",
     content: "Passei a dirigir por longas distâncias sem dor. É incrível o alívio que essa almofada proporciona!",
     rating: 5,
-    imageSrc: "https://images.unsplash.com/photo-1519894359134-d65197f590da"
+    imageSrc: "https://tse2.mm.bing.net/th?id=OIP.tnXYc1A0UtFdb_5VgEKdVQHaHa&rs=1&pid=ImgDetMain"
   }
 ];
 
