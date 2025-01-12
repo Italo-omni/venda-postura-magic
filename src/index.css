@@ -51,11 +51,10 @@ body {
 }
 
 .floating-cta {
-  @apply fixed bottom-6 left-[40%] transform -translate-x-1/2 z-50 
-         w-[90%] sm:w-[70%] md:w-auto animate-bounce;
+  @apply fixed bottom-6 z-50 w-[90%] sm:w-[70%] md:w-auto animate-bounce;
 
-  /* Responsividade para ajustar mais à esquerda */
-  @apply sm:left-[35%] md:left-[30%] lg:left-[25%];
+  /* Responsividade para mover mais para a esquerda em dispositivos móveis e mais para a direita em telas grandes */
+  @apply left-[20%] sm:left-[10%] md:left-[60%] lg:left-[80%];
 }
 
 
