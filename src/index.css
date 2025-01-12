@@ -51,7 +51,7 @@ body {
 }
 
 .floating-cta {
-  @apply fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[40%] md:w-auto animate-bounce;
+  @apply fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] md:w-auto animate-bounce;
 }
 
 /* Adicional para garantir alinhamento */

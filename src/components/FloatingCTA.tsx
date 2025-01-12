@@ -33,7 +33,7 @@ export const FloatingCTA = () => {
         className="cta-button inline-flex items-center gap-2"
       >
         <ShoppingCart className="w-5 h-5" />
-        Comprar Agora por R$ 197,00
+        Comprar Agora
       </button>
     </div>
   );
