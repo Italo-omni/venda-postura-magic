@@ -26,7 +26,6 @@ const Index = () => {
       <Gallery />
       <Testimonials />
       <ShippingCalculator />
-      <FloatingCTA />
     </main>
   );
 };
