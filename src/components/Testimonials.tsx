@@ -89,7 +89,7 @@ const testimonials = [
     role: "Motorista aposentado, 74 anos",
     content: "Passei a dirigir por longas distâncias sem dor. É incrível o alívio que essa almofada proporciona!",
     rating: 5,
-    imageSrc: "https://tse2.mm.bing.net/th?id=OIP.tnXYc1A0UtFdb_5VgEKdVQHaHa&rs=1&pid=ImgDetMain"
+    imageSrc: "https://th.bing.com/th/id/R.80b321da8bfce6b6575a8fe0602ee4d5?rik=9a7E4N47g5k0lA&pid=ImgRaw&r=0"
   }
 ];
 
