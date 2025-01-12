@@ -24,19 +24,27 @@ export const FloatingCTA = () => {
     
     navigate("/checkout");
   };
-
   return (
-    <div className="floating-cta fixed inset-x-0 bottom-4 z-50 flex justify-center">
+    <div
+      className="floating-cta fixed bottom-0 left-0 right-0 flex justify-center items-center z-50"
+      style={{
+        pointerEvents: "none", // Evita clique fora do botão
+      }}
+    >
       <button
         id="comprar"
         onClick={handleClick}
-        className="cta-button inline-flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition-all text-sm sm:text-base"
+        className="cta-button inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-all text-sm sm:text-base"
+        style={{
+          pointerEvents: "auto", // Permite clique no botão
+        }}
       >
         <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
         Comprar Agora
       </button>
     </div>
   );
+  
   
   
 };
