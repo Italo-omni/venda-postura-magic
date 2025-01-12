@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { trackEvent } from "@/utils/metaPixel";
 import { ProductSummary } from "./checkout/ProductSummary";
@@ -19,8 +18,11 @@ interface FormData {
   estado: string;
 }
 
-export const CheckoutForm = () => {
-  const navigate = useNavigate();
+interface CheckoutFormProps {
+  onSuccess?: () => void;
+}
+
+export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     nome: "",
     email: "",
@@ -98,7 +100,11 @@ export const CheckoutForm = () => {
     });
 
     await sendEmail(formData);
-    window.open('https://mpago.la/1soAe1H', "_self");
+    if (onSuccess) {
+      onSuccess();
+    } else {
+      window.open('https://mpago.la/1soAe1H', "_self");
+    }
   };
 
   return (

@@ -9,7 +9,6 @@ const Success = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Track successful purchase view only if coming from checkout
     if (location.state?.fromCheckout) {
       trackEvent('Purchase', {
         content_name: 'Almofada Ergonômica Corretora de Postura',
