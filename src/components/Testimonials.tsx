@@ -60,7 +60,7 @@ const testimonials = [
     name: "Dona Marisa",
     role: "Artesã, 65 anos",
     content: "Perfeita para quem sofre de artrose! Uso todos os dias e já sinto muito menos dor. Aprovadíssima!",
-    rating: 5,
+    rating: 4,
     imageSrc: "https://brecha.com.uy/wp-content/uploads/2024/04/27-Mariyse-Conde-w-680x1024.jpg"
   },
   {
@@ -81,7 +81,7 @@ const testimonials = [
     name: "Dona Neide",
     role: "Costureira, 66 anos",
     content: "Costuro por horas e nem percebo! Super confortável e prática. Recomendo para todo mundo.",
-    rating: 5,
+    rating: 4,
     imageSrc: "https://tse2.mm.bing.net/th?id=OIP.tnXYc1A0UtFdb_5VgEKdVQHaHa&rs=1&pid=ImgDetMain"
   },
   {
