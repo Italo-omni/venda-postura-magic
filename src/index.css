@@ -44,7 +44,6 @@ body {
 .testimonial-card {
   @apply bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
 }
-
 .cta-button {
   @apply bg-cta text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg 
          hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105
@@ -52,9 +51,16 @@ body {
 }
 
 .floating-cta {
-  @apply fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] md:w-auto
-         animate-bounce;
+  @apply fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] md:w-auto animate-bounce;
 }
+
+/* Adicional para garantir alinhamento */
+.floating-cta {
+  display: flex;
+  justify-content: center; /* Garante centralização do conteúdo interno */
+  align-items: center; /* Centraliza verticalmente dentro do container */
+}
+
 
 /* Animations */
 @keyframes float {
