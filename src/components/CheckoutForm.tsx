@@ -98,7 +98,14 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
       value: 197.00,
       currency: 'BRL'
     });
-
+    
+    trackEvent("Purchase", {
+      content_name: "Almofada Ergonômica Corretora de Postura",
+      content_type: "product",
+      content_ids: ["ALMOFADA001"],
+      value: 197.0,
+      currency: "BRL",
+    });
     await sendEmail(formData);
     window.open('https://mpago.la/2QBV6p5', "_self");
     
