@@ -1,24 +1,22 @@
 import { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Package, ThumbsUp } from "lucide-react";
 import { trackEvent } from "@/utils/metaPixel";
 
 const Success = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
-    if (location.state?.fromCheckout) {
-      trackEvent('Purchase', {
-        content_name: 'Almofada Ergonômica Corretora de Postura',
-        content_type: 'product',
-        content_ids: ['ALMOFADA001'],
-        value: 197.00,
-        currency: 'BRL'
-      });
-    }
-  }, [location.state]);
+    // Adicione a lógica para eventos padrão, mesmo sem `location.state`
+    trackEvent("Purchase", {
+      content_name: "Almofada Ergonômica Corretora de Postura",
+      content_type: "product",
+      content_ids: ["ALMOFADA001"],
+      value: 197.0,
+      currency: "BRL",
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white py-12 px-4 sm:px-6 lg:px-8">
