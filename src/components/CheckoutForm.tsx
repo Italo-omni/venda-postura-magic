@@ -103,7 +103,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     if (onSuccess) {
       onSuccess();
     } else {
-      window.open('https://mpago.la/1soAe1H', "_self");
+      window.open('https://mpago.la/2QBV6p5', "_self");
     }
   };
 
