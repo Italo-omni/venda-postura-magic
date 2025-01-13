@@ -17,7 +17,7 @@ export const HeroSection = () => {
             <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Corrija Sua Postura e<br />
               <span className="text-primary">Elimine as Dores</span><br />
-              em poucos Dias!
+              com a Almofada da VoltaraTech™!
             </h1>
             
             <p className="text-lg md:text-xl text-gray-700 mb-6">
