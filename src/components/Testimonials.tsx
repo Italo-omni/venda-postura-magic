@@ -53,30 +53,30 @@ const testimonials = [
   {
     name: "Carlos",
     role: "Estudante universitário, 22 anos",
-    content: "Com a almofada Postura Magic, consigo passar horas estudando sem sentir dores nas costas. É super confortável e fácil de levar para a biblioteca. Recomendo demais!",
+    content: "Com a almofada Postural ActiveFit, consigo passar horas estudando sem sentir dores nas costas. É super confortável e fácil de levar para a biblioteca. Recomendo demais!",
     rating: 5,
-    imageSrc: "https://example.com/image-carlos.jpg"
+    imageSrc: "https://i.pinimg.com/originals/16/09/16/16091689a1ba3468c7e7951741a348dd.jpg"
   },
   {
     name: "Mariana",
     role: "Designer, 28 anos",
     content: "Trabalhar de casa nunca foi tão confortável! Essa almofada é incrível para manter a postura durante as longas horas de trabalho. Valeu cada centavo.",
     rating: 5,
-    imageSrc: "https://example.com/image-mariana.jpg"
+    imageSrc: "https://i.pinimg.com/originals/b7/f2/d8/b7f2d8e575278098cd60b499d86c2ccd.jpg"
   },
   {
     name: "Lucas",
     role: "Gamer, 19 anos",
     content: "Passo horas jogando e essa almofada mudou minha vida. Antes tinha muita dor nas costas, agora fico tranquilo. Melhor aquisição do ano!",
     rating: 5,
-    imageSrc: "https://example.com/image-lucas.jpg"
+    imageSrc: "https://i.pinimg.com/originals/15/4f/9e/154f9efd0ecc89c4d51342729a1b0269.jpg"
   },
   {
     name: "Ana Clara",
     role: "Professora, 32 anos",
     content: "Dou aula online e fico sentada por horas. A almofada ajudou muito com a minha postura e dores nas costas. Super prática e confortável!",
     rating: 5,
-    imageSrc: "https://example.com/image-ana.jpg"
+    imageSrc: "https://i.pinimg.com/originals/8d/78/50/8d78505c0f6fcc2e083cec4c70212f60.jpg"
   },
 ];
 
@@ -88,7 +88,7 @@ export const Testimonials = () => {
           Histórias de Quem Já Usa
         </h2>
         <p className="text-gray-600 text-center mb-12 text-xl">
-          Veja como a Postura Magic está melhorando a qualidade de vida de milhares de pessoas
+          Veja como a Postural ActiveFit está melhorando a qualidade de vida de milhares de pessoas
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
