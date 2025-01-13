@@ -17,7 +17,6 @@ export const ProductSummary = () => {
             <p className="text-gray-600">✨ Produto Premium com Garantia de Satisfação</p>
             <p className="text-gray-600">🚚 Entrega Expressa para Todo Brasil</p>
             <p className="text-gray-600">⭐ Mais de 50.000 clientes satisfeitos</p>
-            <p className="text-gray-600">✅ Alívio imediato das dores nas costas</p>
             <p className="text-gray-600">✅ Material de alta qualidade e durabilidade</p>
             <p className="text-gray-600">✅ Garantia de 30 dias</p>
           </div>
