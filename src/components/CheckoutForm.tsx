@@ -35,18 +35,21 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     cidade: "",
     estado: "",
   });
+  const [hasTrackedPaymentInfo, setHasTrackedPaymentInfo] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
-    if (Object.values(formData).every(val => val === "") && value !== "") {
+    // Track AddPaymentInfo only once when the first field is filled
+    if (!hasTrackedPaymentInfo && value !== "") {
       trackEvent('AddPaymentInfo', {
         content_name: 'Almofada Ergonômica Corretora de Postura',
         content_ids: ['ALMOFADA001'],
         value: 197.00,
         currency: 'BRL'
       });
+      setHasTrackedPaymentInfo(true);
     }
   };
 
@@ -108,7 +111,6 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     });
     await sendEmail(formData);
     window.open('https://mpago.la/2QBV6p5', "_self");
-    
   };
 
   return (
