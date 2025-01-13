@@ -7,7 +7,13 @@ const images = [
   "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms1787niz6b.webp",
   "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xojmw3hkj9fb.webp",
   "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xojmw3iz3pfd.webp",
-  "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp"
+  "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S671649c8778f4ca3857e75e53ff2d418p.jpg_960x960q75.jpg_.avif",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd61262ef2ba747f58258fcfe25b40965N.jpg_960x960q75.jpg_.avif",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2a2bd90baeda4ffd9f9e69adbbe98254f.png_960x960.png_.avif",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3135926ec955494295f3c9ed97f4f4f1n.png_960x960.png_.avif",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1f7158a0ed7a44a093320de440fabca3K.jpg_960x960q75.jpg_.avif",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S356676af4f26488dbee1e4753762a20f3.jpg_960x960q75.jpg_.avif"
   
   ];
   
