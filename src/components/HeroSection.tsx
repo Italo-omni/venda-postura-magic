@@ -15,8 +15,8 @@ export const HeroSection = () => {
             </div>
             
             <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Descubra como trazer mais <br />
-              <span className="text-primary">conforto para suas costas</span><br />
+            Cuide da sua postura <br />
+              <span className="text-primary">e bem-estar diário</span><br />
               com o Corretor Postural ActiveFit™
             </h1>
             
