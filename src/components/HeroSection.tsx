@@ -15,9 +15,9 @@ export const HeroSection = () => {
             </div>
             
             <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Corrija Sua Postura e<br />
-              <span className="text-primary">Elimine as Dores</span><br />
-              com a Corretora de Postural ActiveFit™
+            Corrija sua postura, sinta os benefícios e liberte-se do <br />
+              <span className="text-primary">desconforto nas costas!</span><br />
+              com o Corretor Postural ActiveFit™
             </h1>
             
             <p className="text-lg md:text-xl text-gray-700 mb-6">
