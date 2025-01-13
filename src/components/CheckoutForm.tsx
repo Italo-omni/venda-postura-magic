@@ -101,9 +101,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
 
     await sendEmail(formData);
     window.open('https://mpago.la/2QBV6p5', "_self");
-    if (onSuccess) {
-      onSuccess();
-    } 
+    
   };
 
   return (
