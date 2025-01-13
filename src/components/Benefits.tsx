@@ -1,4 +1,4 @@
-import { CheckCircle, Award, Repeat, Heart, Star } from "lucide-react";
+import { CheckCircle, Award, Repeat, Heart, Star, HeartPulse  } from "lucide-react";
 
 const benefits = [
   {
@@ -20,7 +20,11 @@ const benefits = [
     icon: <Heart className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
     title: "Versátil e Confortável",
     description: "Ideal para casa, trabalho e viagens",
-  },
+  }, {
+    icon: <HeartPulse className="w-8 md:w-12 h-8 md:h-12 text-primary" />,
+    title: "Consulta Médica",
+    description: "Este produto não substitui uma consulta médica. Consulte um profissional para orientações específicas.",
+  }
 ];
 
 export const Benefits = () => {
@@ -33,9 +37,6 @@ export const Benefits = () => {
           </h2>
           <p className="text-gray-600 text-lg">
             Descubra como nosso produto pode melhorar seu bem-estar e conforto.
-          </p>
-          <p className="text-sm text-gray-500 mt-4">
-            Este produto não substitui uma consulta médica. Consulte um profissional de saúde para orientações específicas.
           </p>
         </div>
 
