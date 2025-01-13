@@ -17,11 +17,11 @@ export const HeroSection = () => {
             <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Corrija Sua Postura e<br />
               <span className="text-primary">Elimine as Dores</span><br />
-              com a Almofada da VoltaraTech™!
+              com a Corretora de Postural ActiveFit™
             </h1>
             
             <p className="text-lg md:text-xl text-gray-700 mb-6">
-              Junte-se aos +50 mil brasileiros que já conquistaram uma vida sem dor usando a Almofada Corretora de Postural ActiveFit™
+              Junte-se aos +50 mil brasileiros que já conquistaram uma vida sem dor com os produtos VoltaraTech 
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
