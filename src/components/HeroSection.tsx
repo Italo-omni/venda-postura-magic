@@ -2,7 +2,7 @@ import { ArrowRight, ShieldCheck, Truck, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 export const HeroSection = () => {
   const navigate = useNavigate();
-  return <div className="relative bg-gradient-to-b from-blue-50 to-white py-8 md:py-16 px-4 bg-slate-950 hover:bg-slate-800">
+  return <div className="relative bg-gradient-to-b from-blue-50 to-white py-8 md:py-16 px-4 bg-amber-50">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
           <div className="flex-1 text-left w-full">
