@@ -12,7 +12,7 @@ export const HeroSection = () => {
             </div>
             
             <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Cuide1 da sua postura <br />
+            Cuide da sua postura <br />
               <span className="text-primary">e bem-estar diário</span><br />
               com o Corretor Postural ActiveFit™
             </h1>
