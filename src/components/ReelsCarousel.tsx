@@ -12,9 +12,11 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(true);
   const [direction, setDirection] = useState(0); // -1 para esquerda, 1 para direita
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const transitionTimeoutRef = useRef<NodeJS.Timeout>();
+  const autoPlayTimeoutRef = useRef<NodeJS.Timeout>();
 
   // Adiciona handler para gestos touch
   const touchStartX = useRef(0);
@@ -42,16 +44,31 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   };
 
   const getCircularIndex = (index: number) => {
-    if (index < 0) return videos.length - 1;
-    if (index >= videos.length) return 0;
-    return index;
+    const totalVideos = videos.length;
+    // Garante que o índice sempre fique dentro do intervalo válido
+    return ((index % totalVideos) + totalVideos) % totalVideos;
   };
 
   const handleVideoTransition = (newIndex: number, transitionDirection: number) => {
     if (isTransitioning) return;
+    
+    // Limpa o timeout de autoplay quando há interação manual
+    if (autoPlayTimeoutRef.current) {
+      clearTimeout(autoPlayTimeoutRef.current);
+    }
+    setAutoPlay(false);
+    
     setDirection(transitionDirection);
     setIsTransitioning(true);
-    setCurrentIndex(getCircularIndex(newIndex));
+    
+    const nextIndex = getCircularIndex(newIndex);
+    setCurrentIndex(nextIndex);
+
+    // Pré-carrega o próximo vídeo
+    const nextVideo = videoRefs.current[nextIndex];
+    if (nextVideo) {
+      nextVideo.load();
+    }
 
     if (transitionTimeoutRef.current) {
       clearTimeout(transitionTimeoutRef.current);
@@ -100,18 +117,22 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
       try {
         const currentVideo = videoRefs.current[currentIndex];
         if (currentVideo) {
-          // Mantém o estado do áudio ao trocar de vídeo
           currentVideo.muted = isMuted;
           await currentVideo.play();
+          
+          // Configura o próximo vídeo apenas se autoPlay estiver ativo
+          if (autoPlay) {
+            autoPlayTimeoutRef.current = setTimeout(() => {
+              nextVideo();
+            }, 7000);
+          }
         }
       } catch (error) {
         console.error('Erro ao reproduzir vídeo:', error);
-        // Força mudo se houver erro de reprodução
         setIsMuted(true);
       }
     };
 
-    // Pausa todos os vídeos e configura o atual
     videoRefs.current.forEach((video, index) => {
       if (video) {
         if (index === currentIndex) {
@@ -124,36 +145,46 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
       }
     });
 
-    // Limpa o intervalo anterior
-    const interval = setInterval(nextVideo, 7000);
     return () => {
-      clearInterval(interval);
+      if (autoPlayTimeoutRef.current) {
+        clearTimeout(autoPlayTimeoutRef.current);
+      }
       if (transitionTimeoutRef.current) {
         clearTimeout(transitionTimeoutRef.current);
       }
     };
-  }, [currentIndex, isMuted]);
+  }, [currentIndex, isMuted, autoPlay]);
+
+  // Adiciona botão para controlar reprodução automática
+  const toggleAutoPlay = () => {
+    setAutoPlay(!autoPlay);
+  };
 
   const getPositionClass = (index: number) => {
     const position = index - currentIndex;
-    const normalizedPosition = position < -1 ? videos.length - 1 : position > 1 ? -(videos.length - 1) : position;
+    const totalVideos = videos.length;
+    let normalizedPosition = position;
+
+    // Ajusta a posição para criar o efeito de loop
+    if (position < -(totalVideos - 1) / 2) normalizedPosition += totalVideos;
+    if (position > totalVideos / 2) normalizedPosition -= totalVideos;
 
     return {
       className: `transition-all duration-700 ease-out relative ${
         normalizedPosition === 0
-          ? 'w-screen md:w-[800px] z-30 scale-100 opacity-100'
-          : normalizedPosition === -1 || normalizedPosition === (videos.length - 1)
-          ? 'w-[25vw] md:w-[600px] z-20 scale-[0.85] opacity-60 -translate-x-1/4 hidden md:block'
-          : normalizedPosition === 1 || normalizedPosition === -(videos.length - 1)
-          ? 'w-[25vw] md:w-[600px] z-20 scale-[0.85] opacity-60 translate-x-1/4 hidden md:block'
-          : 'hidden md:block md:w-[500px] z-10 scale-[0.8] opacity-40'
+          ? 'w-[92vw] md:w-[800px] z-30 scale-100 opacity-100'
+          : normalizedPosition === -1 || normalizedPosition === (totalVideos - 1)
+          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.92] opacity-75 -translate-x-1/4'
+          : normalizedPosition === 1 || normalizedPosition === -(totalVideos - 1)
+          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.92] opacity-75 translate-x-1/4'
+          : 'w-[70vw] md:w-[500px] z-10 scale-[0.85] opacity-50'
       } ${isTransitioning ? 'pointer-events-none' : ''}`,
       style: {
         transform: `
           perspective(1000px)
-          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 0 : 12)}deg)
-          translateZ(${normalizedPosition === 0 ? '0' : '-100px'})
-          translateX(${normalizedPosition * (window.innerWidth < 768 ? 0 : 4)}%)
+          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 5 : 12)}deg)
+          translateZ(${normalizedPosition === 0 ? '0' : '-50px'})
+          translateX(${normalizedPosition * (window.innerWidth < 768 ? 2 : 4)}%)
         `,
         transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
         transformStyle: 'preserve-3d',
@@ -164,13 +195,13 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   return (
     <section className="py-0 md:py-16 bg-gray-900 overflow-hidden">
       <div className="container mx-auto px-0 md:px-4">
-        <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-4 md:mb-8 px-4">
+        <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-6 md:mb-8 px-4">
           Veja o ActiveFit™ em Ação
         </h2>
         
         <div className="relative mx-auto" style={{ maxWidth: '100%' }}>
           <div 
-            className="flex justify-center items-center perspective-1000 min-h-[calc(100vh-120px)] md:min-h-0"
+            className="flex justify-center items-center perspective-1000 min-h-[calc(100vh-160px)] md:min-h-0 py-4"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -179,8 +210,8 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
               const { className, style } = getPositionClass(index);
               return (
                 <div key={index} className={className} style={style}>
-                  <div className="relative bg-black overflow-hidden shadow-2xl h-full">
-                    <div className="w-full pb-[177.77%] md:pb-[177.77%]" />
+                  <div className="relative bg-black overflow-hidden rounded-[24px] shadow-2xl h-full border border-white/10">
+                    <div className="w-full pb-[177.77%]" />
                     <video
                       ref={el => videoRefs.current[index] = el}
                       className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
@@ -195,11 +226,12 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       <source src={video.url} type="video/mp4" />
                     </video>
 
+                    {/* Gradiente mais suave */}
                     <div 
-                      className={`absolute inset-0 transition-opacity duration-700 ${
+                      className={`absolute inset-0 transition-opacity duration-700 rounded-[24px] ${
                         index === currentIndex 
                           ? 'opacity-0' 
-                          : 'opacity-80 md:opacity-60 bg-gradient-radial from-transparent to-black'
+                          : 'opacity-90 bg-gradient-to-b from-black/40 via-black/60 to-black/90'
                       }`}
                     />
 
@@ -231,33 +263,41 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
             })}
           </div>
 
-          {/* Indicadores maiores e mais espaçados em mobile */}
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+          {/* Indicadores mais visíveis */}
+          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-30">
             {videos.map((_, index) => (
               <button
                 key={index}
-                onClick={() => handleVideoTransition(index, 0)}
-                className={`h-2 md:h-2.5 rounded-full transition-all duration-500 ${
+                onClick={() => handleVideoTransition(index, index > currentIndex ? 1 : -1)}
+                className={`h-2.5 rounded-full transition-all duration-500 ${
                   index === currentIndex 
-                    ? 'w-10 md:w-12 bg-white scale-110' 
-                    : 'w-2 md:w-2.5 bg-white/40 hover:bg-white/60 active:scale-105'
+                    ? 'w-12 bg-white scale-110' 
+                    : 'w-2.5 bg-white/40 hover:bg-white/60 active:scale-105'
                 }`}
                 aria-label={`Ir para vídeo ${index + 1}`}
               />
             ))}
           </div>
+        </div>
 
-          {/* Áreas de toque maiores para navegação em mobile */}
+        {/* Adiciona controles de reprodução automática */}
+        <div className="absolute top-4 left-4 z-30">
           <button
-            onClick={prevVideo}
-            className="md:hidden absolute left-0 top-0 bottom-0 w-1/3 z-20"
-            aria-label="Vídeo anterior"
-          />
-          <button
-            onClick={nextVideo}
-            className="md:hidden absolute right-0 top-0 bottom-0 w-1/3 z-20"
-            aria-label="Próximo vídeo"
-          />
+            onClick={toggleAutoPlay}
+            className="p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all duration-300"
+            aria-label={autoPlay ? "Pausar reprodução automática" : "Ativar reprodução automática"}
+          >
+            {autoPlay ? (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
     </section>

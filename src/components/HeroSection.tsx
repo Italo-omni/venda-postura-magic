@@ -11,39 +11,26 @@ const mainVideo = {
 // Reels videos permanecem os mesmos
 const reelsVideos = [
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fmostrando-produto.mp4?alt=media&token=926d2731-002f-4070-b4bc-76558d75f0c1",
-    title: "Demonstração do Produto"
-  },
-  {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736619151195.mp4?alt=media&token=c2678058-adcf-43a4-9317-1a84e6cdd7fe",
-    title: "Antes e Depois"
-  },
-  {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618626591.mp4?alt=media&token=47d12d78-fa8c-471b-8a4f-e01b9704156d",
-    title: "Resultados Reais"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FStories%20legenda%20acima.mp4?alt=media&token=644833ca-02aa-4d11-83cd-def651d1d056",
+    title: "Depoimentos"
   },
   {
     url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618376516.mp4?alt=media&token=12205df3-59f0-4364-b280-3894a403c38a",
     title: "Como Usar"
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FStories%20legenda%20acima.mp4?alt=media&token=644833ca-02aa-4d11-83cd-def651d1d056",
-    title: "Depoimentos"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618626591.mp4?alt=media&token=47d12d78-fa8c-471b-8a4f-e01b9704156d",
+    title: "Resultados Reais"
   },
   {
     url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FFeed2%201080.mp4?alt=media&token=1f40ed72-cc21-421f-b19e-6f7947fb2f10",
     title: "Benefícios"
-  },
-  {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FCRIATIVO%20FEED.mp4?alt=media&token=881c9fa1-116b-46f5-af90-aead75b3c878",
-    title: "Resultados Impressionantes"
   }
 ];
 
 export const HeroSection = () => {
   const navigate = useNavigate();
   return (
-    <>
       <div className="relative bg-gradient-to-b from-primary/5 via-white to-white py-8 md:py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
