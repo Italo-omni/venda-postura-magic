@@ -92,32 +92,32 @@ const testimonials: Testimonial[] = [
   {
     name: "Carlos Roberto",
     location: "São Paulo, SP",
-    content: "Depois de anos sofrendo com dores nas costas devido ao trabalho no escritório, o ActiveFit mudou completamente minha vida. Em apenas 3 semanas, notei uma melhora significativa na minha postura e as dores diminuíram consideravelmente.",
-    rating: 5
+    content: "Recebi na cor errada, mas o suporte trocou rapidamente. Agora uso todo dia e as dores nas costas sumiram!",
+    rating: 4
   },
   {
     name: "Ana Paula Silva",
     location: "Rio de Janeiro, RJ",
-    content: "Sou professora e passava horas corrigindo trabalhos. As dores no pescoço eram constantes até conhecer o ActiveFit. Agora consigo trabalhar sem desconforto e minha qualidade de vida melhorou muito!",
+    content: "Demorei pra me acostumar, mas depois de 3 dias ficou perfeito. Minhas dores no pescoço melhoraram muito.",
     rating: 5
   },
   {
     name: "Marcelo Santos",
     location: "Curitiba, PR",
-    content: "Produto excepcional! Como programador, passo muitas horas sentado e tinha sérios problemas de postura. O ActiveFit me ajudou a manter uma postura correta naturalmente. Recomendo a todos os profissionais que trabalham sentados.",
-    rating: 5
+    content: "Preço um pouco alto, mas vale cada centavo. Minha postura melhorou 100%.",
+    rating: 4
   },
   {
     name: "Fernanda Lima",
     location: "Belo Horizonte, MG",
-    content: "Comprei com um pouco de receio, mas superou todas as expectativas. A diferença na minha postura é visível e as dores nas costas praticamente desapareceram. O suporte ao cliente também é excelente!",
-    rating: 4
+    content: "Produto excelente! Resolveu minhas dores nas costas em 2 semanas.",
+    rating: 5
   },
   {
     name: "Ricardo Oliveira",
     location: "Brasília, DF",
-    content: "Investimento que vale cada centavo. Uso há 2 meses e já percebo uma diferença enorme na minha postura. Meu fisioterapeuta inclusive notou a melhora e perguntou o que eu estava fazendo diferente!",
-    rating: 5
+    content: "O manual poderia ser mais claro, mas o produto é ótimo. Recomendo!",
+    rating: 4
   }
 ];
 
@@ -125,110 +125,128 @@ const additionalTestimonials: Testimonial[] = [
   {
     name: "Juliana Costa",
     location: "Salvador, BA",
-    content: "Como dentista, minha postura era péssima durante os atendimentos. O ActiveFit foi recomendado por uma colega e fez toda diferença. Agora consigo manter uma postura adequada durante os procedimentos mais longos.",
-    rating: 5
+    content: "Achei o material um pouco duro no início, mas depois de uma semana ficou perfeito. Como dentista, ajudou muito na minha postura durante os atendimentos.",
+    rating: 4
   },
   {
     name: "Pedro Mendes",
     location: "Florianópolis, SC",
-    content: "Trabalho em home office e as dores nas costas estavam me impedindo de ser produtivo. O ActiveFit resolveu esse problema em poucas semanas. A qualidade do produto é impressionante!",
-    rating: 5
+    content: "Entrega atrasou, mas valeu a espera. Ótimo produto!",
+    rating: 4
   },
   {
     name: "Luciana Almeida",
     location: "Recife, PE",
-    content: "Produto incrível! Uso há 3 meses e as dores crônicas que tinha na lombar diminuíram significativamente. Vale cada centavo investido na nossa saúde.",
-    rating: 4
+    content: "Comprei com dúvida, mas superou expectativas.",
+    rating: 5
   },
   {
     name: "Gabriel Santos",
     location: "Porto Alegre, RS",
-    content: "Como desenvolvedor, passo muitas horas sentado. O ActiveFit me ajudou não só com a postura, mas também com a consciência corporal. Recomendo fortemente!",
-    rating: 5
+    content: "Pedi tamanho errado, troquei fácil. Agora tá perfeito!",
+    rating: 4
   },
   {
     name: "Beatriz Lima",
     location: "Manaus, AM",
-    content: "Estava cética no início, mas os resultados são reais. Minha postura melhorou muito e as dores no pescoço praticamente sumiram. O produto é muito bem feito e confortável.",
+    content: "Funciona mesmo. Minhas dores sumiram em 2 semanas.",
     rating: 5
   },
   {
     name: "Roberto Campos",
     location: "Goiânia, GO",
-    content: "Excelente produto! Uso durante meu trabalho como arquiteto e notei uma grande diferença na minha postura. As dores nas costas diminuíram consideravelmente.",
-    rating: 5
+    content: "Meio caro, mas resolve o problema. Recomendo.",
+    rating: 4
   },
   {
     name: "Mariana Costa",
     location: "Fortaleza, CE",
-    content: "Inicialmente recebi na cor errada, mas o suporte foi muito ágil e trocaram sem custo adicional. Depois disso, só tenho elogios! Ajudou muito na minha recuperação e uso diariamente.",
+    content: "Veio com pequeno defeito, mas trocaram na hora. Agora tá perfeito!",
     rating: 4
   },
   {
     name: "Thiago Oliveira",
     location: "Vitória, ES",
-    content: "Demorei um pouco para me acostumar nos primeiros dias e quase desisti, mas após seguir as dicas do manual de ajuste, percebi uma grande diferença. Hoje não consigo trabalhar sem ele!",
+    content: "Ajuste complicado no início, mas depois fica fácil.",
     rating: 4
   },
   {
     name: "Carolina Martins",
     location: "Natal, RN",
-    content: "O produto é bom, mas achei o preço um pouco alto. Mesmo assim, considerando a melhora nas minhas dores nas costas, acabou valendo o investimento. O suporte da empresa também é muito bom.",
-    rating: 4
+    content: "Melhor investimento que fiz pra minha coluna!",
+    rating: 5
   },
   {
     name: "Fernando Silva",
     location: "Campo Grande, MS",
-    content: "A entrega atrasou alguns dias e fiquei preocupado, mas a empresa manteve boa comunicação. O produto chegou e superou minhas expectativas. A diferença na postura é notável.",
+    content: "Cor diferente do site, mas gostei até mais. Produto excelente.",
     rating: 4
   },
   {
     name: "Amanda Souza",
     location: "João Pessoa, PB",
-    content: "Pedi o tamanho errado inicialmente, mas consegui trocar facilmente. Depois do ajuste correto, tem sido ótimo para manter a postura durante o trabalho. Recomendo prestar atenção nas medidas!",
-    rating: 4
+    content: "Resolveu minhas dores nas costas. Recomendo muito!",
+    rating: 5
   },
   {
     name: "Rafael Moreira",
     location: "Cuiabá, MT",
-    content: "O material é um pouco rígido no começo, mas após uma semana de uso amolece e fica muito confortável. Ajudou bastante com minhas dores lombares. Vale a adaptação inicial.",
+    content: "Demorei pra me adaptar, mas valeu a pena.",
     rating: 4
   },
   {
     name: "Vinícius Rocha",
     location: "Belém, PA",
-    content: "Tive que ajustar algumas vezes até encontrar a posição ideal, o manual poderia ser mais claro. Mas depois que ajustei corretamente, tem funcionado muito bem. As dores nas costas melhoraram bastante.",
-    rating: 4
+    content: "Produto bom, entrega rápida. Satisfeito!",
+    rating: 5
   },
   {
     name: "Patricia Nunes",
     location: "São Luís, MA",
-    content: "Comprei há 2 meses e já notei uma diferença incrível na minha postura. O produto é muito confortável e fácil de usar.",
-    rating: 5
+    content: "Achei caro no início, mas vale cada centavo.",
+    rating: 4
   },
   {
     name: "Henrique Lima",
     location: "Macapá, AP",
-    content: "Como profissional de TI, o ActiveFit tem sido essencial no meu dia a dia. Ajudou muito a melhorar minha postura durante as longas horas de trabalho.",
+    content: "Uso todo dia no trabalho. Não tenho mais dores.",
     rating: 5
   },
   {
     name: "Camila Rodrigues",
     location: "Boa Vista, RR",
-    content: "Produto de alta qualidade! Ajudou muito com minhas dores cervicais. Recomendo para todos que trabalham muito tempo sentados.",
+    content: "Chegou rápido e funciona muito bem!",
     rating: 5
   },
   {
     name: "Bruno Carvalho",
     location: "Palmas, TO",
-    content: "Investimento que valeu muito a pena! O produto é confortável, durável e realmente ajuda a manter uma boa postura durante o trabalho.",
-    rating: 5
+    content: "Manual confuso, mas o suporte ajudou. Produto ótimo!",
+    rating: 4
   },
   {
     name: "Renata Alves",
     location: "Rio Branco, AC",
-    content: "Excelente produto! Uso há 3 meses e as melhorias na minha postura são visíveis. Recomendo para todos que têm problemas posturais.",
+    content: "Tive que ajustar várias vezes, mas depois ficou perfeito.",
+    rating: 4
+  },
+  {
+    name: "Paulo Mendes",
+    location: "Porto Velho, RO",
+    content: "Qualidade excelente. Recomendo!",
     rating: 5
+  },
+  {
+    name: "Sandra Costa",
+    location: "Maceió, AL",
+    content: "Resolveu meu problema de postura. Muito bom!",
+    rating: 5
+  },
+  {
+    name: "João Silva",
+    location: "Teresina, PI",
+    content: "Preço justo pelo benefício. Satisfeito.",
+    rating: 4
   }
 ];
 
