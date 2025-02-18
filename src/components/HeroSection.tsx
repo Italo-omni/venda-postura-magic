@@ -1,44 +1,42 @@
 import { ArrowRight, ShieldCheck, Truck, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { VideoCarousel } from "./VideoCarousel";
 import { ReelsCarousel } from "./ReelsCarousel";
 
-const videos = [
-  {
-    id: "wLv2QMC_GyQ",
-    title: "Como o ActiveFit™ funciona"
-  },
-  {
-    id: "wLv2QMC_GyQ",
-    title: "Depoimento de clientes"
-  },
-  {
-    id: "wLv2QMC_GyQ",
-    title: "Tutorial de uso"
-  }
-];
+// Apenas um vídeo principal
+const mainVideo = {
+  id: "wLv2QMC_GyQ",
+  title: "Como o ActiveFit™ funciona"
+};
 
-// Mais vídeos para o ReelsCarousel
+// Reels videos permanecem os mesmos
 const reelsVideos = [
   {
-    id: "wLv2QMC_GyQ",
-    title: "Antes e Depois com ActiveFit™"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fmostrando-produto.mp4?alt=media&token=926d2731-002f-4070-b4bc-76558d75f0c1",
+    title: "Demonstração do Produto"
   },
   {
-    id: "wLv2QMC_GyQ",
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736619151195.mp4?alt=media&token=c2678058-adcf-43a4-9317-1a84e6cdd7fe",
+    title: "Antes e Depois"
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618626591.mp4?alt=media&token=47d12d78-fa8c-471b-8a4f-e01b9704156d",
     title: "Resultados Reais"
   },
   {
-    id: "wLv2QMC_GyQ",
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618376516.mp4?alt=media&token=12205df3-59f0-4364-b280-3894a403c38a",
     title: "Como Usar"
   },
   {
-    id: "wLv2QMC_GyQ",
-    title: "Depoimento Cliente 1"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FStories%20legenda%20acima.mp4?alt=media&token=644833ca-02aa-4d11-83cd-def651d1d056",
+    title: "Depoimentos"
   },
   {
-    id: "wLv2QMC_GyQ",
-    title: "Depoimento Cliente 2"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FFeed2%201080.mp4?alt=media&token=1f40ed72-cc21-421f-b19e-6f7947fb2f10",
+    title: "Benefícios"
+  },
+  {
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FCRIATIVO%20FEED.mp4?alt=media&token=881c9fa1-116b-46f5-af90-aead75b3c878",
+    title: "Resultados Impressionantes"
   }
 ];
 
@@ -112,7 +110,16 @@ export const HeroSection = () => {
             </div>
             
             <div className="flex-1 w-full">
-              <VideoCarousel videos={videos} />
+              <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                <div className="aspect-video">
+                  <iframe 
+                    className="absolute top-0 left-0 w-full h-full" 
+                    src={`https://www.youtube.com/embed/${mainVideo.id}?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&controls=0`}
+                    allow="autoplay; encrypted-media"
+                    title={mainVideo.title}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
