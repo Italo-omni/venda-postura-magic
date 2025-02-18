@@ -12,6 +12,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [direction, setDirection] = useState(0); // -1 para esquerda, 1 para direita
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const transitionTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -40,31 +41,37 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     }
   };
 
-  const handleVideoTransition = (newIndex: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex(newIndex);
+  const getCircularIndex = (index: number) => {
+    if (index < 0) return videos.length - 1;
+    if (index >= videos.length) return 0;
+    return index;
+  };
 
-    // Limpa o timeout anterior se existir
+  const handleVideoTransition = (newIndex: number, transitionDirection: number) => {
+    if (isTransitioning) return;
+    setDirection(transitionDirection);
+    setIsTransitioning(true);
+    setCurrentIndex(getCircularIndex(newIndex));
+
     if (transitionTimeoutRef.current) {
       clearTimeout(transitionTimeoutRef.current);
     }
 
-    // Define um novo timeout para a transição
     transitionTimeoutRef.current = setTimeout(() => {
       setIsTransitioning(false);
-    }, 500); // Duração da transição
+    }, 700);
   };
 
   const nextVideo = () => {
-    handleVideoTransition((currentIndex + 1) % videos.length);
+    handleVideoTransition(currentIndex + 1, 1);
   };
 
   const prevVideo = () => {
-    handleVideoTransition((currentIndex - 1 + videos.length) % videos.length);
+    handleVideoTransition(currentIndex - 1, -1);
   };
 
-  const toggleMute = () => {
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Previne que o clique propague para a navegação
     const currentVideo = videoRefs.current[currentIndex];
     if (currentVideo) {
       currentVideo.muted = !currentVideo.muted;
@@ -106,6 +113,33 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     };
   }, [currentIndex, isMuted]);
 
+  const getPositionClass = (index: number) => {
+    const position = index - currentIndex;
+    const normalizedPosition = position < -1 ? videos.length - 1 : position > 1 ? -(videos.length - 1) : position;
+
+    return {
+      className: `transition-all duration-700 ease-out relative ${
+        normalizedPosition === 0
+          ? 'w-[95vw] md:w-[800px] z-30 scale-100 opacity-100'
+          : normalizedPosition === -1 || normalizedPosition === (videos.length - 1)
+          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.9] opacity-80 -translate-x-1/4'
+          : normalizedPosition === 1 || normalizedPosition === -(videos.length - 1)
+          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.9] opacity-80 translate-x-1/4'
+          : 'w-[70vw] md:w-[500px] z-10 scale-[0.8] opacity-60'
+      } ${isTransitioning ? 'pointer-events-none' : ''}`,
+      style: {
+        transform: `
+          perspective(1000px)
+          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 8 : 12)}deg)
+          translateZ(${normalizedPosition === 0 ? '0' : '-100px'})
+          translateX(${normalizedPosition * (window.innerWidth < 768 ? 2 : 4)}%)
+        `,
+        transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
+        transformStyle: 'preserve-3d',
+      }
+    };
+  };
+
   return (
     <section className="py-4 md:py-16 bg-gray-900 overflow-hidden">
       <div className="container mx-auto px-0 md:px-4">
@@ -121,34 +155,15 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
             onTouchEnd={handleTouchEnd}
           >
             {videos.map((video, index) => {
-              const position = index - currentIndex;
+              const { className, style } = getPositionClass(index);
               return (
-                <div 
-                  key={index}
-                  className={`transition-all duration-700 ease-out relative ${
-                    position === 0
-                      ? 'w-screen md:w-[600px] z-20 scale-100 opacity-100'
-                      : position === -1
-                      ? 'w-[70vw] md:w-[400px] z-10 scale-[0.85] opacity-70 -translate-x-1/4'
-                      : position === 1
-                      ? 'w-[70vw] md:w-[400px] z-10 scale-[0.85] opacity-70 translate-x-1/4'
-                      : 'hidden md:block md:w-[300px] z-0 scale-80 opacity-40'
-                  } ${isTransitioning ? 'pointer-events-none' : ''}`}
-                  style={{
-                    transform: `perspective(1000px) 
-                              rotateY(${position * (window.innerWidth < 768 ? 10 : 15)}deg) 
-                              translateZ(${position === 0 ? '0' : '-100px'})
-                              translateX(${position * (window.innerWidth < 768 ? 2 : 5)}%)`,
-                    transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
-                    transformStyle: 'preserve-3d',
-                  }}
-                >
+                <div key={index} className={className} style={style}>
                   <div className="relative rounded-lg md:rounded-2xl bg-black overflow-hidden shadow-2xl">
                     <div className="w-full pb-[177.77%]" />
                     <video
                       ref={el => videoRefs.current[index] = el}
                       className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
-                        isTransitioning ? 'scale-110' : 'scale-100'
+                        isTransitioning ? 'scale-105' : 'scale-100'
                       }`}
                       playsInline
                       muted={index !== currentIndex || isMuted}
@@ -159,22 +174,17 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       <source src={video.url} type="video/mp4" />
                     </video>
 
-                    {/* Gradientes otimizados para mobile */}
                     <div 
                       className={`absolute inset-0 transition-opacity duration-700 ${
-                        position === 0 
+                        index === currentIndex 
                           ? 'opacity-0' 
-                          : position === -1 
-                          ? 'opacity-70 md:opacity-60 bg-gradient-to-r from-black via-transparent to-transparent' 
-                          : position === 1 
-                          ? 'opacity-70 md:opacity-60 bg-gradient-to-l from-black via-transparent to-transparent'
-                          : 'opacity-80 bg-black'
+                          : 'opacity-70 md:opacity-60 bg-gradient-radial from-transparent to-black/90'
                       }`}
                     />
 
-                    <div className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 md:to-black/80 transition-opacity duration-700`} />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 transition-opacity duration-700" />
                     
-                    {position === 0 && (
+                    {index === currentIndex && (
                       <button
                         onClick={toggleMute}
                         className="absolute top-3 right-3 md:top-4 md:right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110"
@@ -188,7 +198,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       </button>
                     )}
                     
-                    <div className={`absolute bottom-0 left-0 right-0 p-3 md:p-6 transform transition-all duration-700 ${
+                    <div className={`absolute bottom-0 left-0 right-0 p-4 md:p-6 transform transition-all duration-700 ${
                       isTransitioning ? 'translate-y-2 opacity-0' : 'translate-y-0 opacity-100'
                     }`}>
                       <h3 className="text-white font-semibold text-base md:text-xl">{video.title}</h3>
@@ -204,7 +214,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
             {videos.map((_, index) => (
               <button
                 key={index}
-                onClick={() => handleVideoTransition(index)}
+                onClick={() => handleVideoTransition(index, 0)}
                 className={`h-1.5 md:h-2 rounded-full transition-all duration-500 ${
                   index === currentIndex 
                     ? 'w-8 md:w-10 bg-white scale-110' 
