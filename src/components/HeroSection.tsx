@@ -21,7 +21,7 @@ const reelsVideos = [
     tags: ["Depoimentos", "Resultados", "Clientes Satisfeitos"]
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fcomo_usar_mobile.mp4?alt=media&token=12205df3-59f0-4364-b280-3894a403c38a",
+    url: "https://streamable.com/p8y117",
     title: "Guia de Uso",
     thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fcomo_usar.jpg?alt=media",
     duration: "0:30",
