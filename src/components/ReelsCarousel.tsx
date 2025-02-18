@@ -70,12 +70,28 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     handleVideoTransition(currentIndex - 1, -1);
   };
 
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Previne que o clique propague para a navegação
+  const toggleMute = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     const currentVideo = videoRefs.current[currentIndex];
-    if (currentVideo) {
-      currentVideo.muted = !currentVideo.muted;
-      setIsMuted(currentVideo.muted);
+    if (!currentVideo) return;
+
+    try {
+      if (isMuted) {
+        // Tenta reproduzir com áudio primeiro (necessário para iOS)
+        await currentVideo.play();
+        currentVideo.muted = false;
+        setIsMuted(false);
+      } else {
+        currentVideo.muted = true;
+        setIsMuted(true);
+      }
+    } catch (error) {
+      console.error('Erro ao controlar áudio:', error);
+      // Fallback: força mudo se houver erro
+      currentVideo.muted = true;
+      setIsMuted(true);
     }
   };
 
@@ -84,14 +100,18 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
       try {
         const currentVideo = videoRefs.current[currentIndex];
         if (currentVideo) {
+          // Mantém o estado do áudio ao trocar de vídeo
           currentVideo.muted = isMuted;
           await currentVideo.play();
         }
       } catch (error) {
         console.error('Erro ao reproduzir vídeo:', error);
+        // Força mudo se houver erro de reprodução
+        setIsMuted(true);
       }
     };
 
+    // Pausa todos os vídeos e configura o atual
     videoRefs.current.forEach((video, index) => {
       if (video) {
         if (index === currentIndex) {
@@ -104,6 +124,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
       }
     });
 
+    // Limpa o intervalo anterior
     const interval = setInterval(nextVideo, 7000);
     return () => {
       clearInterval(interval);
@@ -185,7 +206,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                     {index === currentIndex && (
                       <button
                         onClick={toggleMute}
-                        className="absolute top-6 right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110"
+                        className="absolute top-6 right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
                         aria-label={isMuted ? "Ativar som" : "Desativar som"}
                       >
                         {isMuted ? (
@@ -193,6 +214,9 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                         ) : (
                           <Volume2 className="w-6 h-6 md:w-7 md:h-7" />
                         )}
+                        <span className="sr-only">
+                          {isMuted ? "Ativar som" : "Desativar som"}
+                        </span>
                       </button>
                     )}
                     
