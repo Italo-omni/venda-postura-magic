@@ -118,6 +118,16 @@ const testimonials: Testimonial[] = [
     location: "Brasília, DF",
     content: "O manual poderia ser mais claro, mas o produto é ótimo. Recomendo!",
     rating: 4
+  },
+  {
+    name: "Maria Silva",
+    location: "São Paulo, SP",
+    rating: 5,
+    date: "15/03/2024",
+    image: "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp",
+    text: "Recebi minha almofada ActiveFit™ exatamente como mostrado nas fotos! A qualidade é impressionante e já estou sentindo a diferença na minha postura. O material é super confortável e resistente. Recomendo muito para quem passa muito tempo sentado, seja no trabalho ou em casa. A entrega foi rápida e o produto veio muito bem embalado. Valeu cada centavo!",
+    verified: true,
+    highlight: true
   }
 ];
 
