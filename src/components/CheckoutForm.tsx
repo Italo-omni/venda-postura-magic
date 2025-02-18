@@ -39,7 +39,9 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
   });
   const [hasTrackedPaymentInfo, setHasTrackedPaymentInfo] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
