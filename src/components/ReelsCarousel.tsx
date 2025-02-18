@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -118,9 +119,10 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     const position = index - currentIndex;
     const normalizedPosition = position < -1 ? videos.length - 1 : position > 1 ? -(videos.length - 1) : position;
 
-    const baseWidth = isMobile ? '100vw' : '800px';
-    const sideWidth = isMobile ? '85vw' : '600px';
-    const farWidth = isMobile ? '75vw' : '500px';
+    // Aumentando o tamanho base dos vídeos
+    const baseWidth = isMobile ? '95vw' : '1000px';
+    const sideWidth = isMobile ? '90vw' : '800px';
+    const farWidth = isMobile ? '85vw' : '700px';
 
     return {
       className: `transition-all duration-700 ease-out relative ${
@@ -156,7 +158,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
         
         <div className="relative mx-auto" style={{ maxWidth: '100%' }}>
           <div 
-            className="flex justify-center items-center perspective-1000 min-h-[600px] md:min-h-[800px]"
+            className="flex justify-center items-center perspective-1000 min-h-[800px] md:min-h-[1000px]"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -194,21 +196,21 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                     {index === currentIndex && (
                       <button
                         onClick={toggleMute}
-                        className="absolute top-3 right-3 md:top-4 md:right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110"
+                        className="absolute top-3 right-3 md:top-6 md:right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110"
                         aria-label={isMuted ? "Ativar som" : "Desativar som"}
                       >
                         {isMuted ? (
-                          <VolumeX className="w-5 h-5 md:w-6 md:h-6" />
+                          <VolumeX className="w-6 h-6 md:w-8 md:h-8" />
                         ) : (
-                          <Volume2 className="w-5 h-5 md:w-6 md:h-6" />
+                          <Volume2 className="w-6 h-6 md:w-8 md:h-8" />
                         )}
                       </button>
                     )}
                     
-                    <div className={`absolute bottom-0 left-0 right-0 p-4 md:p-6 transform transition-all duration-700 ${
+                    <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 transform transition-all duration-700 ${
                       isTransitioning ? 'translate-y-2 opacity-0' : 'translate-y-0 opacity-100'
                     }`}>
-                      <h3 className="text-white font-semibold text-base md:text-xl">{video.title}</h3>
+                      <h3 className="text-white font-semibold text-lg md:text-2xl">{video.title}</h3>
                     </div>
                   </div>
                 </div>
