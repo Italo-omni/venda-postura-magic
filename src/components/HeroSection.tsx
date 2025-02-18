@@ -1,5 +1,22 @@
 import { ArrowRight, ShieldCheck, Truck, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { VideoCarousel } from "./VideoCarousel";
+
+const videos = [
+  {
+    id: "VIDEO_ID_1",
+    title: "Como o ActiveFit™ funciona"
+  },
+  {
+    id: "VIDEO_ID_2",
+    title: "Depoimento de clientes"
+  },
+  {
+    id: "VIDEO_ID_3",
+    title: "Tutorial de uso"
+  }
+];
+
 export const HeroSection = () => {
   const navigate = useNavigate();
   return (
@@ -69,15 +86,7 @@ export const HeroSection = () => {
           </div>
           
           <div className="flex-1 w-full">
-            <div className="relative rounded-xl overflow-hidden shadow-2xl">
-              <div className="aspect-video">
-                <iframe 
-                  className="absolute top-0 left-0 w-full h-full" 
-                  src="https://www.youtube.com/embed/NOVO_ID_DO_VIDEO?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&controls=0"
-                  allow="autoplay; encrypted-media">
-                </iframe>
-              </div>
-            </div>
+            <VideoCarousel videos={videos} />
           </div>
         </div>
       </div>
