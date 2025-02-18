@@ -46,32 +46,45 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
     }`}>
       <div className="relative">
         <Quote className="absolute -top-2 -left-2 w-8 h-8 text-blue-500 opacity-20" />
-        <div className="flex items-center gap-4 mb-6">
-          {testimonial.image && (
-            <div className="flex-shrink-0">
-              <TestimonialImage src={testimonial.image} name={testimonial.name} />
-            </div>
-          )}
+        <div className="flex flex-col gap-4 mb-6">
+          <div className="flex items-center gap-2">
+            <p className="font-bold text-xl">{testimonial.name}</p>
+            {testimonial.verified && (
+              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
+                Compra verificada
+              </span>
+            )}
+          </div>
           <div>
-            <div className="flex items-center gap-2">
-              <p className="font-bold text-xl">{testimonial.name}</p>
-              {testimonial.verified && (
-                <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
-                  Compra verificada
-                </span>
-              )}
-            </div>
             <p className="text-gray-600 text-sm">{testimonial.location}</p>
             {testimonial.date && (
               <p className="text-gray-500 text-xs mt-1">{testimonial.date}</p>
             )}
           </div>
+          <div className="flex mb-2">
+            {[...Array(testimonial.rating)].map((_, i) => (
+              <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
         </div>
-        <div className="flex mb-4">
-          {[...Array(testimonial.rating)].map((_, i) => (
-            <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-          ))}
-        </div>
+
+        {/* Foto do produto enviada pelo cliente */}
+        {testimonial.image && (
+          <div className="mb-4 rounded-lg overflow-hidden">
+            <div className="relative group">
+              <img
+                src={testimonial.image}
+                alt={`Produto recebido por ${testimonial.name}`}
+                className="w-full rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute bottom-2 left-2 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Foto do produto recebido
+              </span>
+            </div>
+          </div>
+        )}
+
         <p className="text-gray-700 leading-relaxed">
           {expanded ? content : content.length > 150 ? `${content.slice(0, 150)}...` : content}
         </p>
