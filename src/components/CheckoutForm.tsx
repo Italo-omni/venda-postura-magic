@@ -16,6 +16,7 @@ interface FormData {
   bairro: string;
   cidade: string;
   estado: string;
+  quantidade: number;
 }
 
 interface CheckoutFormProps {
@@ -34,6 +35,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     bairro: "",
     cidade: "",
     estado: "",
+    quantidade: 1,
   });
   const [hasTrackedPaymentInfo, setHasTrackedPaymentInfo] = useState(false);
 
@@ -234,6 +236,27 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
             onChange={handleInputChange}
             required
           />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Quantidade *
+          </label>
+          <select
+            name="quantidade"
+            value={formData.quantidade}
+            onChange={handleInputChange}
+            className="w-full rounded-md border border-input bg-background px-3 py-2"
+            required
+          >
+            {[1, 2, 3, 4, 5].map((num) => (
+              <option key={num} value={num}>
+                {num} {num === 1 ? "unidade" : "unidades"} - R$ {(197 * num).toFixed(2)}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 

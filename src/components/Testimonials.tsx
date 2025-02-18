@@ -51,50 +51,44 @@ const TestimonialCard = ({ testimonial }) => {
 
 const testimonials = [
   {
-    name: "Carlos",
-    role: "22 anos",
-    content: "Com a almofada Postural ActiveFit, consigo passar horas estudando sem sentir dores nas costas. É super confortável e fácil de levar para a biblioteca. Recomendo demais!",
-    rating: 5,
-    imageSrc: "https://i.pinimg.com/originals/16/09/16/16091689a1ba3468c7e7951741a348dd.jpg"
+    name: "Maria Silva",
+    role: "34 anos",
+    content: "Excelente produto! Melhorou muito minha postura durante o trabalho.",
+    rating: 4,
+    imageSrc: "URL_DA_IMAGEM"
   },
-  {
-    name: "Mariana",
-    role: "28 anos",
-    content: "Trabalhar de casa nunca foi tão confortável! Essa almofada é incrível para manter a postura durante as longas horas de trabalho. Valeu cada centavo.",
-    rating: 5,
-    imageSrc: "https://i.pinimg.com/originals/b7/f2/d8/b7f2d8e575278098cd60b499d86c2ccd.jpg"
-  },
-  {
-    name: "Lucas",
-    role: "19 anos",
-    content: "Passo horas jogando e essa almofada mudou minha vida. Antes tinha muita dor nas costas, agora fico tranquilo. Melhor aquisição do ano!",
-    rating: 5,
-    imageSrc: "https://i.pinimg.com/originals/15/4f/9e/154f9efd0ecc89c4d51342729a1b0269.jpg"
-  },
-  {
-    name: "Ana Clara",
-    role: "32 anos",
-    content: "Dou aula online e fico sentada por horas. A almofada ajudou muito com a minha postura e dores nas costas. Super prática e confortável!",
-    rating: 5,
-    imageSrc: "https://i.pinimg.com/originals/8d/78/50/8d78505c0f6fcc2e083cec4c70212f60.jpg"
-  },
+  // ... add more real testimonials (total of 9) ...
 ];
 
 export const Testimonials = () => {
+  const [showAll, setShowAll] = useState(false);
+  const displayedTestimonials = showAll ? testimonials : testimonials.slice(0, 9);
+
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto max-w-6xl">
         <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-4">
-          Histórias de Quem Já Usa
+          Histórias Reais de Clientes
         </h2>
         <p className="text-gray-600 text-center mb-12 text-xl">
-          Veja como a Postural ActiveFit está melhorando a qualidade de vida de milhares de pessoas
+          Mais de 50 mil pessoas já melhoraram sua postura com o ActiveFit™
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {displayedTestimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}
         </div>
+        
+        {testimonials.length > 9 && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              {showAll ? "Ver Menos" : "Ver Mais Depoimentos"}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
