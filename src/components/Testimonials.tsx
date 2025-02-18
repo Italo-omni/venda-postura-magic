@@ -257,10 +257,10 @@ export const Testimonials = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto max-w-6xl">
         <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-4">
-          Histórias Reais de Clientes
+          Comentários de Clientes
         </h2>
         <p className="text-gray-600 text-center mb-12 text-xl">
-          Mais de 50 mil pessoas já melhoraram sua postura com o ActiveFit™
+          Mais de 2 mil pessoas já melhoraram sua postura com o ActiveFit™
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
