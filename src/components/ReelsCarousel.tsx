@@ -162,7 +162,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     return {
       className: `transition-all duration-700 ease-out relative ${
         normalizedPosition === 0
-          ? 'w-full h-[calc(100vh-100px)] md:w-[800px] md:h-auto z-30 scale-100 opacity-100' // Tela cheia em mobile
+          ? 'w-full h-[100vh] md:h-[80vh] z-30 scale-100 opacity-100' // Ajustado para altura total
           : normalizedPosition === -1 || normalizedPosition === (videos.length - 1)
           ? 'w-[25vw] md:w-[600px] z-20 scale-[0.85] opacity-60 -translate-x-1/4 hidden md:block'
           : normalizedPosition === 1 || normalizedPosition === -(videos.length - 1)
@@ -175,7 +175,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
           rotateY(${normalizedPosition * (window.innerWidth < 768 ? 0 : 12)}deg)
           translateZ(${normalizedPosition === 0 ? '0' : '-100px'})
           translateX(${normalizedPosition * (window.innerWidth < 768 ? 0 : 4)}%)
-        `,
+        `
       }
     };
   };
@@ -189,7 +189,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
         
         <div className="relative mx-auto" style={{ maxWidth: '100%' }}>
           <div 
-            className="flex justify-center items-center min-h-screen md:min-h-0"
+            className="flex justify-center items-center h-screen md:h-[80vh]" // Ajustado para altura total
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -198,10 +198,10 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
               const { className, style } = getPositionClass(index);
               return (
                 <div key={index} className={className} style={style}>
-                  <div className="relative bg-black h-full">
+                  <div className="relative w-full h-full bg-black">
                     <video
                       ref={el => videoRefs.current[index] = el}
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
                       playsInline
                       muted={index !== currentIndex || isMuted}
                       loop
@@ -211,15 +211,18 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       <source src={video.url} type="video/mp4" />
                     </video>
 
+                    {/* Gradiente de sobreposição para melhor legibilidade */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+
                     {/* Overlay com informações */}
-                    <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6">
+                    <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 z-10">
                       {/* Cabeçalho */}
                       <div className="flex justify-between items-start">
-                        <div>
-                          <h3 className="text-white text-xl md:text-2xl font-bold mb-2">
+                        <div className="max-w-[80%]">
+                          <h3 className="text-white text-xl md:text-2xl font-bold mb-2 drop-shadow-lg">
                             {video.title}
                           </h3>
-                          <p className="text-white/80 text-sm md:text-base">
+                          <p className="text-white/90 text-sm md:text-base drop-shadow">
                             {video.description}
                           </p>
                         </div>
@@ -227,7 +230,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                         {index === currentIndex && (
                           <button
                             onClick={toggleMute}
-                            className="p-3 rounded-full bg-black/50 text-white backdrop-blur-sm"
+                            className="p-3 rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-all"
                             aria-label={isMuted ? "Ativar som" : "Desativar som"}
                           >
                             {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
@@ -238,11 +241,11 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       {/* Tags e duração */}
                       <div className="flex flex-wrap gap-2 mt-auto">
                         {video.tags?.map((tag, i) => (
-                          <span key={i} className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+                          <span key={i} className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm shadow-lg">
                             {tag}
                           </span>
                         ))}
-                        <span className="px-2 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm ml-auto">
+                        <span className="px-2 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm ml-auto shadow-lg">
                           {video.duration}
                         </span>
                       </div>

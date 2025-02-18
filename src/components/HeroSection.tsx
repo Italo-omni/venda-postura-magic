@@ -11,17 +11,17 @@ const mainVideo = {
 // Reels videos permanecem os mesmos
 const reelsVideos = [
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FStories%20legenda%20acima_mobile.mp4?alt=media&token=644833ca-02aa-4d11-83cd-def651d1d056",
+    url: "https://firebasestorage.googleapis.com/v0/b/sos-app-5afc4.appspot.com/o/Feed%202%20narrado%201080.mp4?alt=media&token=33688069-22bf-4ce2-9fbc-429a0b3760a2",
     title: "Depoimentos Reais",
     thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fdepoimentos.jpg?alt=media",
     duration: "0:45",
     aspectRatio: "9:16",
-    description: "Veja o que nossos clientes estão falando",
+    description: "Veja como o ActiveFit™ mudou a vida de muitas pessoas",
     previewImage: "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp",
     tags: ["Depoimentos", "Resultados", "Clientes Satisfeitos"]
   },
   {
-    url: "https://streamable.com/p8y117",
+    url: "https://firebasestorage.googleapis.com/v0/b/sos-app-5afc4.appspot.com/o/snapdouyin.app-hd-1736618376516.mp4?alt=media&token=7541e01c-3b22-4b82-bdcf-3bed2c1264d2",
     title: "Guia de Uso",
     thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fcomo_usar.jpg?alt=media",
     duration: "0:30",
@@ -31,24 +31,14 @@ const reelsVideos = [
     tags: ["Tutorial", "Passo a Passo", "Dicas"]
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fresultados_mobile.mp4?alt=media&token=47d12d78-fa8c-471b-8a4f-e01b9704156d",
-    title: "Antes e Depois",
+    url: "https://firebasestorage.googleapis.com/v0/b/sos-app-5afc4.appspot.com/o/mostrando-produto.mp4?alt=media&token=51a0584e-6e1d-48b1-9134-657c92841fb7",
+    title: "Demonstração do produto",
     thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fresultados.jpg?alt=media",
     duration: "0:35",
     aspectRatio: "9:16",
     description: "Transformações reais de nossos clientes",
     previewImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms1787niz6b.webp",
     tags: ["Resultados", "Transformação", "Antes e Depois"]
-  },
-  {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fbeneficios_mobile.mp4?alt=media&token=1f40ed72-cc21-421f-b19e-6f7947fb2f10",
-    title: "Benefícios Comprovados",
-    thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fbeneficios.jpg?alt=media",
-    duration: "0:40",
-    aspectRatio: "9:16",
-    description: "Descubra todos os benefícios",
-    previewImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178923fbe.webp",
-    tags: ["Benefícios", "Saúde", "Bem-estar"]
   }
 ].map(video => ({
   ...video,
