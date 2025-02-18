@@ -7,23 +7,29 @@ interface FormActionsProps {
 
 export const FormActions = ({ formData, isValid }: FormActionsProps) => {
   const generateWhatsAppMessage = () => {
-    const message = `Meu pedido 🚀
+    const message = `🛍️ *NOVO PEDIDO*
 
-*Dados do Cliente:*
-Nome: ${formData.nome}
-Email: ${formData.email}
-Telefone: ${formData.telefone}
+━━━━━━━━━━━━━━━━
+👤 *DADOS DO CLIENTE*
+━━━━━━━━━━━━━━━━
+• Nome: ${formData.nome}
+• Email: ${formData.email}
+• Telefone: ${formData.telefone}
 
-*Endereço de Entrega:*
-${formData.endereco}, ${formData.numero}
-${formData.complemento ? `Complemento: ${formData.complemento}` : ''}
-${formData.bairro} - ${formData.cidade}/${formData.estado}
-CEP: ${formData.cep}
+📍 *ENDEREÇO DE ENTREGA*
+━━━━━━━━━━━━━━━━
+• ${formData.endereco}, ${formData.numero}
+${formData.complemento ? `• Complemento: ${formData.complemento}\n` : ''}• Bairro: ${formData.bairro}
+• Cidade: ${formData.cidade}/${formData.estado}
+• CEP: ${formData.cep}
 
-*Produto:*
-Almofada Ergonômica Corretora de Postura
-Quantidade: ${formData.quantidade}
-Valor Total: R$ ${(197 * formData.quantidade).toFixed(2)}`;
+🛒 *DETALHES DO PEDIDO*
+━━━━━━━━━━━━━━━━
+• Produto: Almofada Ergonômica Corretora de Postura
+• Quantidade: ${formData.quantidade}
+• Valor Total: *R$ ${(197 * formData.quantidade).toFixed(2)}*
+
+_Agradecemos pela preferência!_ ✨`;
 
     return encodeURIComponent(message);
   };
@@ -40,7 +46,7 @@ Valor Total: R$ ${(197 * formData.quantidade).toFixed(2)}`;
         className="w-full bg-primary text-white hover:bg-primary/90"
         disabled={!isValid}
       >
-        Pagar com Mercado Pago
+        Pagamento seguro mercado pago
       </Button>
       
       <Button
