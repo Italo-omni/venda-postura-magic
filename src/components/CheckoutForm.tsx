@@ -117,6 +117,11 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     window.open('https://mpago.la/2QBV6p5', "_self");
   };
 
+  const isFormValid = () => {
+    const requiredFields = ['nome', 'email', 'telefone', 'cep', 'endereco', 'numero', 'bairro', 'cidade', 'estado'];
+    return requiredFields.every(field => formData[field as keyof FormData]);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <ProductSummary />
@@ -262,7 +267,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
         </div>
       </div>
 
-      <FormActions />
+      <FormActions formData={formData} isValid={isFormValid()} />
     </form>
   );
 };
