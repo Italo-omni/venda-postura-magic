@@ -1,4 +1,3 @@
-
 import { ArrowRight, ShieldCheck, Truck, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ReelsCarousel } from "./ReelsCarousel";
@@ -12,22 +11,73 @@ const mainVideo = {
 // Reels videos permanecem os mesmos
 const reelsVideos = [
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FStories%20legenda%20acima.mp4?alt=media&token=644833ca-02aa-4d11-83cd-def651d1d056",
-    title: "Depoimentos"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FStories%20legenda%20acima_mobile.mp4?alt=media&token=644833ca-02aa-4d11-83cd-def651d1d056",
+    title: "Depoimentos Reais",
+    thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fdepoimentos.jpg?alt=media",
+    duration: "0:45",
+    aspectRatio: "9:16",
+    description: "Veja o que nossos clientes estão falando",
+    previewImage: "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp",
+    tags: ["Depoimentos", "Resultados", "Clientes Satisfeitos"]
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618376516.mp4?alt=media&token=12205df3-59f0-4364-b280-3894a403c38a",
-    title: "Como Usar"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fcomo_usar_mobile.mp4?alt=media&token=12205df3-59f0-4364-b280-3894a403c38a",
+    title: "Guia de Uso",
+    thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fcomo_usar.jpg?alt=media",
+    duration: "0:30",
+    aspectRatio: "9:16",
+    description: "Aprenda a usar corretamente",
+    previewImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178d9sr2e.webp",
+    tags: ["Tutorial", "Passo a Passo", "Dicas"]
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618626591.mp4?alt=media&token=47d12d78-fa8c-471b-8a4f-e01b9704156d",
-    title: "Resultados Reais"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fresultados_mobile.mp4?alt=media&token=47d12d78-fa8c-471b-8a4f-e01b9704156d",
+    title: "Antes e Depois",
+    thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fresultados.jpg?alt=media",
+    duration: "0:35",
+    aspectRatio: "9:16",
+    description: "Transformações reais de nossos clientes",
+    previewImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms1787niz6b.webp",
+    tags: ["Resultados", "Transformação", "Antes e Depois"]
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2FFeed2%201080.mp4?alt=media&token=1f40ed72-cc21-421f-b19e-6f7947fb2f10",
-    title: "Benefícios"
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fbeneficios_mobile.mp4?alt=media&token=1f40ed72-cc21-421f-b19e-6f7947fb2f10",
+    title: "Benefícios Comprovados",
+    thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fbeneficios.jpg?alt=media",
+    duration: "0:40",
+    aspectRatio: "9:16",
+    description: "Descubra todos os benefícios",
+    previewImage: "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178923fbe.webp",
+    tags: ["Benefícios", "Saúde", "Bem-estar"]
   }
-];
+].map(video => ({
+  ...video,
+  // Configurações otimizadas para mobile
+  playbackOptions: {
+    autoplay: true,
+    muted: true,
+    loop: true,
+    playsInline: true,
+    preload: "auto",
+    controls: false,
+  },
+  // Configurações de qualidade e performance
+  videoOptions: {
+    quality: "720p",
+    bufferSize: "large",
+    optimizeForMobile: true,
+    loadingPriority: "high",
+  },
+  // Configurações de UI
+  uiOptions: {
+    showControls: true,
+    showProgress: true,
+    enableFullscreen: true,
+    swipeToNavigate: true,
+    doubleTapToSeek: true,
+    tapToPlayPause: true,
+  }
+}));
 
 export const HeroSection = () => {
   const navigate = useNavigate();
