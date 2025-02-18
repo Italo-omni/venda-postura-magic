@@ -17,8 +17,13 @@ const TestimonialImage = ({ src, name }) => {
 interface Testimonial {
   name: string;
   location: string;
-  content: string;
+  content?: string;
+  text?: string;
   rating: number;
+  image?: string;
+  date?: string;
+  verified?: boolean;
+  highlight?: boolean;
 }
 
 interface TestimonialCardProps {
@@ -33,15 +38,33 @@ interface TestimonialsModalProps {
 
 const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
   const [expanded, setExpanded] = useState(false);
+  const content = testimonial.content || testimonial.text || '';
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 ${
+      testimonial.highlight ? 'border-2 border-primary/20' : ''
+    }`}>
       <div className="relative">
         <Quote className="absolute -top-2 -left-2 w-8 h-8 text-blue-500 opacity-20" />
         <div className="flex items-center gap-4 mb-6">
+          {testimonial.image && (
+            <div className="flex-shrink-0">
+              <TestimonialImage src={testimonial.image} name={testimonial.name} />
+            </div>
+          )}
           <div>
-            <p className="font-bold text-xl">{testimonial.name}</p>
+            <div className="flex items-center gap-2">
+              <p className="font-bold text-xl">{testimonial.name}</p>
+              {testimonial.verified && (
+                <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
+                  Compra verificada
+                </span>
+              )}
+            </div>
             <p className="text-gray-600 text-sm">{testimonial.location}</p>
+            {testimonial.date && (
+              <p className="text-gray-500 text-xs mt-1">{testimonial.date}</p>
+            )}
           </div>
         </div>
         <div className="flex mb-4">
@@ -50,9 +73,9 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
           ))}
         </div>
         <p className="text-gray-700 leading-relaxed">
-          {expanded ? testimonial.content : `${testimonial.content.slice(0, 150)}...`}
+          {expanded ? content : content.length > 150 ? `${content.slice(0, 150)}...` : content}
         </p>
-        {testimonial.content.length > 150 && (
+        {content.length > 150 && (
           <button
             onClick={() => setExpanded(!expanded)}
             className="text-blue-500 mt-2 hover:underline"
