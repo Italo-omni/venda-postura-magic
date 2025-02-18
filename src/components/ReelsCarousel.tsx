@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -140,7 +141,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
           translateX(${normalizedPosition * (isMobile ? 1 : 4)}%)
         `,
         transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
-        transformStyle: 'preserve-3d' as const,
+        transformStyle: 'preserve-3d',
         width: normalizedPosition === 0 ? baseWidth : 
                (normalizedPosition === -1 || normalizedPosition === 1) ? sideWidth : farWidth
       }
@@ -247,4 +248,4 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
       </div>
     </section>
   );
-};
+}; 

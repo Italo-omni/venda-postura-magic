@@ -43,6 +43,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
+    // Track AddPaymentInfo only once when the first field is filled
     if (!hasTrackedPaymentInfo && value !== "") {
       trackEvent('AddPaymentInfo', {
         content_name: 'Almofada Ergonômica Corretora de Postura',
@@ -52,11 +53,6 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
       });
       setHasTrackedPaymentInfo(true);
     }
-  };
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: Number(value) }));
   };
 
   const sendEmail = async (data: FormData) => {
@@ -251,7 +247,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <select
             name="quantidade"
             value={formData.quantidade}
-            onChange={handleSelectChange}
+            onChange={handleInputChange}
             className="w-full rounded-md border border-input bg-background px-3 py-2"
             required
           >
