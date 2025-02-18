@@ -13,15 +13,35 @@ export const HeroSection = () => {
             </div>
             
             <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Corretor Postural ActiveFit™ <br />
-              <span className="text-primary">Por Apenas R$ 197,00</span>
+              Corretor Postural ActiveFit™
             </h1>
+
+            <div className="bg-primary/5 p-4 rounded-xl mb-6">
+              <p className="text-2xl md:text-3xl font-bold text-primary mb-2">
+                12x de R$ 16,42
+              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-gray-500 line-through">De R$ 397,00</p>
+                <p className="text-gray-700">Por R$ 197,00 à vista</p>
+              </div>
+              <p className="text-sm text-gray-600 mt-1">
+                ou PIX com 5% de desconto: R$ 187,15
+              </p>
+            </div>
             
             <div className="text-lg md:text-xl text-gray-700 mb-6 space-y-2">
-              <p>✓ Ou 12x de R$ 16,42 sem juros</p>
-              <p>✓ Entrega Expressa para Todo Brasil</p>
-              <p>✓ Mais de 50.000 clientes satisfeitos</p>
-              <p>✓ Disponível em 3 cores: Preto, Bege e Rosa</p>
+              <p className="flex items-center gap-2">
+                <span className="text-primary font-bold">✓</span>
+                Entrega Expressa para Todo Brasil
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="text-primary font-bold">✓</span>
+                Mais de 50.000 clientes satisfeitos
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="text-primary font-bold">✓</span>
+                Disponível em 3 cores: Preto, Bege e Rosa
+              </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
@@ -39,8 +59,11 @@ export const HeroSection = () => {
               </div>
             </div>
 
-            <button onClick={() => navigate("/checkout")} className="w-full sm:w-auto cta-button group">
-              Comprar Agora
+            <button 
+              onClick={() => navigate("/checkout")} 
+              className="w-full sm:w-auto cta-button group text-lg"
+            >
+              Comprar Agora em 12x de R$ 16,42
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
