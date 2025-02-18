@@ -1,7 +1,5 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ReelsCarouselProps {
   videos: {
@@ -14,11 +12,11 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [direction, setDirection] = useState(0);
+  const [direction, setDirection] = useState(0); // -1 para esquerda, 1 para direita
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const transitionTimeoutRef = useRef<NodeJS.Timeout>();
-  const isMobile = useIsMobile();
 
+  // Adiciona handler para gestos touch
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -32,7 +30,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
 
   const handleTouchEnd = () => {
     const diff = touchStartX.current - touchEndX.current;
-    const threshold = 50;
+    const threshold = 50; // Sensibilidade do swipe
 
     if (Math.abs(diff) > threshold) {
       if (diff > 0) {
@@ -73,7 +71,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   };
 
   const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Previne que o clique propague para a navegação
     const currentVideo = videoRefs.current[currentIndex];
     if (currentVideo) {
       currentVideo.muted = !currentVideo.muted;
@@ -119,45 +117,39 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     const position = index - currentIndex;
     const normalizedPosition = position < -1 ? videos.length - 1 : position > 1 ? -(videos.length - 1) : position;
 
-    const baseWidth = isMobile ? '100vw' : '800px';
-    const sideWidth = isMobile ? '85vw' : '600px';
-    const farWidth = isMobile ? '75vw' : '500px';
-
     return {
       className: `transition-all duration-700 ease-out relative ${
         normalizedPosition === 0
-          ? `w-[${baseWidth}] z-30 scale-100 opacity-100`
+          ? 'w-[95vw] md:w-[800px] z-30 scale-100 opacity-100'
           : normalizedPosition === -1 || normalizedPosition === (videos.length - 1)
-          ? `w-[${sideWidth}] z-20 scale-[0.9] opacity-80 -translate-x-1/4`
+          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.9] opacity-80 -translate-x-1/4'
           : normalizedPosition === 1 || normalizedPosition === -(videos.length - 1)
-          ? `w-[${sideWidth}] z-20 scale-[0.9] opacity-80 translate-x-1/4`
-          : `w-[${farWidth}] z-10 scale-[0.8] opacity-60`
+          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.9] opacity-80 translate-x-1/4'
+          : 'w-[70vw] md:w-[500px] z-10 scale-[0.8] opacity-60'
       } ${isTransitioning ? 'pointer-events-none' : ''}`,
       style: {
         transform: `
           perspective(1000px)
-          rotateY(${normalizedPosition * (isMobile ? 5 : 12)}deg)
+          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 8 : 12)}deg)
           translateZ(${normalizedPosition === 0 ? '0' : '-100px'})
-          translateX(${normalizedPosition * (isMobile ? 1 : 4)}%)
+          translateX(${normalizedPosition * (window.innerWidth < 768 ? 2 : 4)}%)
         `,
         transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
         transformStyle: 'preserve-3d',
-        width: normalizedPosition === 0 ? baseWidth : 
-               (normalizedPosition === -1 || normalizedPosition === 1) ? sideWidth : farWidth
       }
     };
   };
 
   return (
-    <section className="py-4 md:py-16 bg-gray-50 overflow-hidden">
+    <section className="py-4 md:py-16 bg-gray-900 overflow-hidden">
       <div className="container mx-auto px-0 md:px-4">
-        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 text-center mb-4 md:mb-8 px-4">
+        <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-4 md:mb-8 px-4">
           Veja o ActiveFit™ em Ação
         </h2>
         
         <div className="relative mx-auto" style={{ maxWidth: '100%' }}>
           <div 
-            className="flex justify-center items-center perspective-1000 min-h-[600px] md:min-h-[800px]"
+            className="flex justify-center items-center perspective-1000"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -217,7 +209,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
             })}
           </div>
 
-          {/* Indicadores móveis melhorados */}
+          {/* Indicadores otimizados para mobile */}
           <div className="absolute -bottom-4 md:-bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-30">
             {videos.map((_, index) => (
               <button
@@ -225,23 +217,23 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                 onClick={() => handleVideoTransition(index, 0)}
                 className={`h-1.5 md:h-2 rounded-full transition-all duration-500 ${
                   index === currentIndex 
-                    ? 'w-8 md:w-10 bg-primary scale-110' 
-                    : 'w-1.5 md:w-2 bg-primary/40 hover:bg-primary/60 active:scale-105'
+                    ? 'w-8 md:w-10 bg-white scale-110' 
+                    : 'w-1.5 md:w-2 bg-white/40 hover:bg-white/60 active:scale-105'
                 }`}
                 aria-label={`Ir para vídeo ${index + 1}`}
               />
             ))}
           </div>
 
-          {/* Navegação por touch melhorada */}
+          {/* Áreas de toque invisíveis para navegação em mobile */}
           <button
             onClick={prevVideo}
-            className="absolute left-0 top-0 bottom-0 w-1/4 z-20 md:hidden"
+            className="md:hidden absolute left-0 top-0 bottom-0 w-1/4 z-20"
             aria-label="Vídeo anterior"
           />
           <button
             onClick={nextVideo}
-            className="absolute right-0 top-0 bottom-0 w-1/4 z-20 md:hidden"
+            className="md:hidden absolute right-0 top-0 bottom-0 w-1/4 z-20"
             aria-label="Próximo vídeo"
           />
         </div>
