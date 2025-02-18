@@ -5,6 +5,9 @@ interface ReelsCarouselProps {
   videos: {
     url: string;
     title: string;
+    description: string;
+    tags?: string[];
+    duration: string;
   }[];
 }
 
@@ -154,45 +157,39 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
 
   const getPositionClass = (index: number) => {
     const position = index - currentIndex;
-    const totalVideos = videos.length;
-    let normalizedPosition = position;
-
-    if (position < -(totalVideos - 1) / 2) normalizedPosition += totalVideos;
-    if (position > totalVideos / 2) normalizedPosition -= totalVideos;
+    const normalizedPosition = position < -1 ? videos.length - 1 : position > 1 ? -(videos.length - 1) : position;
 
     return {
       className: `transition-all duration-700 ease-out relative ${
         normalizedPosition === 0
-          ? 'w-[92vw] md:w-[800px] z-30 scale-100 opacity-100'
-          : normalizedPosition === -1 || normalizedPosition === (totalVideos - 1)
-          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.92] opacity-75 -translate-x-1/4'
-          : normalizedPosition === 1 || normalizedPosition === -(totalVideos - 1)
-          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.92] opacity-75 translate-x-1/4'
-          : 'w-[70vw] md:w-[500px] z-10 scale-[0.85] opacity-50'
+          ? 'w-full h-[calc(100vh-100px)] md:w-[800px] md:h-auto z-30 scale-100 opacity-100' // Tela cheia em mobile
+          : normalizedPosition === -1 || normalizedPosition === (videos.length - 1)
+          ? 'w-[25vw] md:w-[600px] z-20 scale-[0.85] opacity-60 -translate-x-1/4 hidden md:block'
+          : normalizedPosition === 1 || normalizedPosition === -(videos.length - 1)
+          ? 'w-[25vw] md:w-[600px] z-20 scale-[0.85] opacity-60 translate-x-1/4 hidden md:block'
+          : 'hidden'
       } ${isTransitioning ? 'pointer-events-none' : ''}`,
       style: {
         transform: `
           perspective(1000px)
-          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 5 : 12)}deg)
-          translateZ(${normalizedPosition === 0 ? '0' : '-50px'})
-          translateX(${normalizedPosition * (window.innerWidth < 768 ? 2 : 4)}%)
+          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 0 : 12)}deg)
+          translateZ(${normalizedPosition === 0 ? '0' : '-100px'})
+          translateX(${normalizedPosition * (window.innerWidth < 768 ? 0 : 4)}%)
         `,
-        transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
-        transformStyle: 'preserve-3d' as const
-      } as React.CSSProperties
+      }
     };
   };
 
   return (
     <section className="py-0 md:py-16 bg-gray-900 overflow-hidden">
       <div className="container mx-auto px-0 md:px-4">
-        <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-6 md:mb-8 px-4">
+        <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-4 md:mb-8 px-4">
           Veja o ActiveFit™ em Ação
         </h2>
         
         <div className="relative mx-auto" style={{ maxWidth: '100%' }}>
           <div 
-            className="flex justify-center items-center perspective-1000 min-h-[calc(100vh-160px)] md:min-h-0 py-4"
+            className="flex justify-center items-center min-h-screen md:min-h-0"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -201,13 +198,10 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
               const { className, style } = getPositionClass(index);
               return (
                 <div key={index} className={className} style={style}>
-                  <div className="relative bg-black overflow-hidden rounded-[24px] shadow-2xl h-full border border-white/10">
-                    <div className="w-full pb-[177.77%]" />
+                  <div className="relative bg-black h-full">
                     <video
                       ref={el => videoRefs.current[index] = el}
-                      className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
-                        isTransitioning ? 'scale-105' : 'scale-100'
-                      }`}
+                      className="w-full h-full object-cover"
                       playsInline
                       muted={index !== currentIndex || isMuted}
                       loop
@@ -217,35 +211,41 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       <source src={video.url} type="video/mp4" />
                     </video>
 
-                    <div 
-                      className={`absolute inset-0 transition-opacity duration-700 rounded-[24px] ${
-                        index === currentIndex 
-                          ? 'opacity-0' 
-                          : 'opacity-90 bg-gradient-to-b from-black/40 via-black/60 to-black/90'
-                      }`}
-                    />
-
-                    {index === currentIndex && (
-                      <button
-                        onClick={toggleMute}
-                        className="absolute top-6 right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
-                        aria-label={isMuted ? "Ativar som" : "Desativar som"}
-                      >
-                        {isMuted ? (
-                          <VolumeX className="w-6 h-6 md:w-7 md:h-7" />
-                        ) : (
-                          <Volume2 className="w-6 h-6 md:w-7 md:h-7" />
+                    {/* Overlay com informações */}
+                    <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6">
+                      {/* Cabeçalho */}
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="text-white text-xl md:text-2xl font-bold mb-2">
+                            {video.title}
+                          </h3>
+                          <p className="text-white/80 text-sm md:text-base">
+                            {video.description}
+                          </p>
+                        </div>
+                        
+                        {index === currentIndex && (
+                          <button
+                            onClick={toggleMute}
+                            className="p-3 rounded-full bg-black/50 text-white backdrop-blur-sm"
+                            aria-label={isMuted ? "Ativar som" : "Desativar som"}
+                          >
+                            {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+                          </button>
                         )}
-                        <span className="sr-only">
-                          {isMuted ? "Ativar som" : "Desativar som"}
+                      </div>
+
+                      {/* Tags e duração */}
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {video.tags?.map((tag, i) => (
+                          <span key={i} className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+                            {tag}
+                          </span>
+                        ))}
+                        <span className="px-2 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm ml-auto">
+                          {video.duration}
                         </span>
-                      </button>
-                    )}
-                    
-                    <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 transform transition-all duration-700 ${
-                      isTransitioning ? 'translate-y-2 opacity-0' : 'translate-y-0 opacity-100'
-                    }`}>
-                      <h3 className="text-white font-semibold text-xl md:text-2xl">{video.title}</h3>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -253,39 +253,21 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
             })}
           </div>
 
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+          {/* Indicadores de navegação */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
             {videos.map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleVideoTransition(index, index > currentIndex ? 1 : -1)}
-                className={`h-2.5 rounded-full transition-all duration-500 ${
+                className={`h-1.5 rounded-full transition-all duration-500 ${
                   index === currentIndex 
-                    ? 'w-12 bg-white scale-110' 
-                    : 'w-2.5 bg-white/40 hover:bg-white/60 active:scale-105'
+                    ? 'w-8 bg-white' 
+                    : 'w-1.5 bg-white/40'
                 }`}
                 aria-label={`Ir para vídeo ${index + 1}`}
               />
             ))}
           </div>
-        </div>
-
-        <div className="absolute top-4 left-4 z-30">
-          <button
-            onClick={toggleAutoPlay}
-            className="p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all duration-300"
-            aria-label={autoPlay ? "Pausar reprodução automática" : "Ativar reprodução automática"}
-          >
-            {autoPlay ? (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            )}
-          </button>
         </div>
       </div>
     </section>

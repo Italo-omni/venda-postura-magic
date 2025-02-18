@@ -112,7 +112,7 @@ export const HeroSection = () => {
               <div className="text-lg md:text-xl text-gray-700 mb-6 space-y-2">
                 <p className="flex items-center gap-2">
                   <span className="text-primary font-bold">✓</span>
-                  Entrega Expressa para Todo Brasil
+                  Entrega Expressa para Todo o Mundo
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="text-primary font-bold">✓</span>
