@@ -120,19 +120,19 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     return {
       className: `transition-all duration-700 ease-out relative ${
         normalizedPosition === 0
-          ? 'w-[95vw] md:w-[800px] z-30 scale-100 opacity-100'
+          ? 'w-screen md:w-[800px] z-30 scale-100 opacity-100'
           : normalizedPosition === -1 || normalizedPosition === (videos.length - 1)
-          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.9] opacity-80 -translate-x-1/4'
+          ? 'w-[25vw] md:w-[600px] z-20 scale-[0.85] opacity-60 -translate-x-1/4 hidden md:block'
           : normalizedPosition === 1 || normalizedPosition === -(videos.length - 1)
-          ? 'w-[80vw] md:w-[600px] z-20 scale-[0.9] opacity-80 translate-x-1/4'
-          : 'w-[70vw] md:w-[500px] z-10 scale-[0.8] opacity-60'
+          ? 'w-[25vw] md:w-[600px] z-20 scale-[0.85] opacity-60 translate-x-1/4 hidden md:block'
+          : 'hidden md:block md:w-[500px] z-10 scale-[0.8] opacity-40'
       } ${isTransitioning ? 'pointer-events-none' : ''}`,
       style: {
         transform: `
           perspective(1000px)
-          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 8 : 12)}deg)
+          rotateY(${normalizedPosition * (window.innerWidth < 768 ? 0 : 12)}deg)
           translateZ(${normalizedPosition === 0 ? '0' : '-100px'})
-          translateX(${normalizedPosition * (window.innerWidth < 768 ? 2 : 4)}%)
+          translateX(${normalizedPosition * (window.innerWidth < 768 ? 0 : 4)}%)
         `,
         transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
         transformStyle: 'preserve-3d',
@@ -141,7 +141,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   };
 
   return (
-    <section className="py-4 md:py-16 bg-gray-900 overflow-hidden">
+    <section className="py-0 md:py-16 bg-gray-900 overflow-hidden">
       <div className="container mx-auto px-0 md:px-4">
         <h2 className="text-2xl md:text-4xl font-bold text-white text-center mb-4 md:mb-8 px-4">
           Veja o ActiveFit™ em Ação
@@ -149,7 +149,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
         
         <div className="relative mx-auto" style={{ maxWidth: '100%' }}>
           <div 
-            className="flex justify-center items-center perspective-1000"
+            className="flex justify-center items-center perspective-1000 min-h-[calc(100vh-120px)] md:min-h-0"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -158,8 +158,8 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
               const { className, style } = getPositionClass(index);
               return (
                 <div key={index} className={className} style={style}>
-                  <div className="relative rounded-lg md:rounded-2xl bg-black overflow-hidden shadow-2xl">
-                    <div className="w-full pb-[177.77%]" />
+                  <div className="relative bg-black overflow-hidden shadow-2xl h-full">
+                    <div className="w-full pb-[177.77%] md:pb-[177.77%]" />
                     <video
                       ref={el => videoRefs.current[index] = el}
                       className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
@@ -178,30 +178,28 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       className={`absolute inset-0 transition-opacity duration-700 ${
                         index === currentIndex 
                           ? 'opacity-0' 
-                          : 'opacity-70 md:opacity-60 bg-gradient-radial from-transparent to-black/90'
+                          : 'opacity-80 md:opacity-60 bg-gradient-radial from-transparent to-black'
                       }`}
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90 transition-opacity duration-700" />
-                    
                     {index === currentIndex && (
                       <button
                         onClick={toggleMute}
-                        className="absolute top-3 right-3 md:top-4 md:right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110"
+                        className="absolute top-6 right-6 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 active:scale-95 transition-all duration-300 z-30 transform hover:scale-110"
                         aria-label={isMuted ? "Ativar som" : "Desativar som"}
                       >
                         {isMuted ? (
-                          <VolumeX className="w-5 h-5 md:w-6 md:h-6" />
+                          <VolumeX className="w-6 h-6 md:w-7 md:h-7" />
                         ) : (
-                          <Volume2 className="w-5 h-5 md:w-6 md:h-6" />
+                          <Volume2 className="w-6 h-6 md:w-7 md:h-7" />
                         )}
                       </button>
                     )}
                     
-                    <div className={`absolute bottom-0 left-0 right-0 p-4 md:p-6 transform transition-all duration-700 ${
+                    <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 transform transition-all duration-700 ${
                       isTransitioning ? 'translate-y-2 opacity-0' : 'translate-y-0 opacity-100'
                     }`}>
-                      <h3 className="text-white font-semibold text-base md:text-xl">{video.title}</h3>
+                      <h3 className="text-white font-semibold text-xl md:text-2xl">{video.title}</h3>
                     </div>
                   </div>
                 </div>
@@ -209,31 +207,31 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
             })}
           </div>
 
-          {/* Indicadores otimizados para mobile */}
-          <div className="absolute -bottom-4 md:-bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-30">
+          {/* Indicadores maiores e mais espaçados em mobile */}
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
             {videos.map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleVideoTransition(index, 0)}
-                className={`h-1.5 md:h-2 rounded-full transition-all duration-500 ${
+                className={`h-2 md:h-2.5 rounded-full transition-all duration-500 ${
                   index === currentIndex 
-                    ? 'w-8 md:w-10 bg-white scale-110' 
-                    : 'w-1.5 md:w-2 bg-white/40 hover:bg-white/60 active:scale-105'
+                    ? 'w-10 md:w-12 bg-white scale-110' 
+                    : 'w-2 md:w-2.5 bg-white/40 hover:bg-white/60 active:scale-105'
                 }`}
                 aria-label={`Ir para vídeo ${index + 1}`}
               />
             ))}
           </div>
 
-          {/* Áreas de toque invisíveis para navegação em mobile */}
+          {/* Áreas de toque maiores para navegação em mobile */}
           <button
             onClick={prevVideo}
-            className="md:hidden absolute left-0 top-0 bottom-0 w-1/4 z-20"
+            className="md:hidden absolute left-0 top-0 bottom-0 w-1/3 z-20"
             aria-label="Vídeo anterior"
           />
           <button
             onClick={nextVideo}
-            className="md:hidden absolute right-0 top-0 bottom-0 w-1/4 z-20"
+            className="md:hidden absolute right-0 top-0 bottom-0 w-1/3 z-20"
             aria-label="Próximo vídeo"
           />
         </div>
