@@ -1,10 +1,3 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
-
 const images = [
   
   "https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178agnv19.webp",
@@ -31,28 +24,17 @@ export const Gallery = () => {
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12">
           Conheça Cada Detalhe
         </h2>
-        <Swiper
-          modules={[Autoplay, EffectFade, Navigation, Pagination]}
-          spaceBetween={30}
-          effect={'fade'}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          className="w-full aspect-[4/3] rounded-lg"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {images.map((image, index) => (
-            <SwiperSlide key={index}>
+            <div key={index} className="aspect-square overflow-hidden rounded-lg">
               <img 
                 src={image} 
                 alt={`Almofada Ergonômica - Imagem ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="gallery-image"
               />
-            </SwiperSlide>
+            </div>
           ))}
-        </Swiper>
+        </div>
       </div>
     </section>
   );

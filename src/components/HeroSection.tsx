@@ -1,4 +1,3 @@
-
 import { ArrowRight, ShieldCheck, Truck, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ReelsCarousel } from "./ReelsCarousel";
@@ -32,7 +31,6 @@ const reelsVideos = [
 export const HeroSection = () => {
   const navigate = useNavigate();
   return (
-    <>
       <div className="relative bg-gradient-to-b from-primary/5 via-white to-white py-8 md:py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
