@@ -18,6 +18,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
   const transitionTimeoutRef = useRef<NodeJS.Timeout>();
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout>();
 
+  // Adiciona handler para gestos touch
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -44,12 +45,14 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
 
   const getCircularIndex = (index: number) => {
     const totalVideos = videos.length;
+    // Garante que o índice sempre fique dentro do intervalo válido
     return ((index % totalVideos) + totalVideos) % totalVideos;
   };
 
   const handleVideoTransition = (newIndex: number, transitionDirection: number) => {
     if (isTransitioning) return;
     
+    // Limpa o timeout de autoplay quando há interação manual
     if (autoPlayTimeoutRef.current) {
       clearTimeout(autoPlayTimeoutRef.current);
     }
@@ -61,6 +64,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     const nextIndex = getCircularIndex(newIndex);
     setCurrentIndex(nextIndex);
 
+    // Pré-carrega o próximo vídeo
     const nextVideo = videoRefs.current[nextIndex];
     if (nextVideo) {
       nextVideo.load();
@@ -92,6 +96,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
 
     try {
       if (isMuted) {
+        // Tenta reproduzir com áudio primeiro (necessário para iOS)
         await currentVideo.play();
         currentVideo.muted = false;
         setIsMuted(false);
@@ -101,6 +106,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
       }
     } catch (error) {
       console.error('Erro ao controlar áudio:', error);
+      // Fallback: força mudo se houver erro
       currentVideo.muted = true;
       setIsMuted(true);
     }
@@ -114,6 +120,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
           currentVideo.muted = isMuted;
           await currentVideo.play();
           
+          // Configura o próximo vídeo apenas se autoPlay estiver ativo
           if (autoPlay) {
             autoPlayTimeoutRef.current = setTimeout(() => {
               nextVideo();
@@ -148,6 +155,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     };
   }, [currentIndex, isMuted, autoPlay]);
 
+  // Adiciona botão para controlar reprodução automática
   const toggleAutoPlay = () => {
     setAutoPlay(!autoPlay);
   };
@@ -157,6 +165,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
     const totalVideos = videos.length;
     let normalizedPosition = position;
 
+    // Ajusta a posição para criar o efeito de loop
     if (position < -(totalVideos - 1) / 2) normalizedPosition += totalVideos;
     if (position > totalVideos / 2) normalizedPosition -= totalVideos;
 
@@ -178,7 +187,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
           translateX(${normalizedPosition * (window.innerWidth < 768 ? 2 : 4)}%)
         `,
         transition: 'all 0.7s cubic-bezier(0.4, 0.0, 0.2, 1)',
-        transformStyle: 'preserve-3d' as const
+        transformStyle: 'preserve-3d',
       }
     };
   };
@@ -217,6 +226,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
                       <source src={video.url} type="video/mp4" />
                     </video>
 
+                    {/* Gradiente mais suave */}
                     <div 
                       className={`absolute inset-0 transition-opacity duration-700 rounded-[24px] ${
                         index === currentIndex 
@@ -253,6 +263,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
             })}
           </div>
 
+          {/* Indicadores mais visíveis */}
           <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-30">
             {videos.map((_, index) => (
               <button
@@ -269,6 +280,7 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
           </div>
         </div>
 
+        {/* Adiciona controles de reprodução automática */}
         <div className="absolute top-4 left-4 z-30">
           <button
             onClick={toggleAutoPlay}
@@ -290,4 +302,4 @@ export const ReelsCarousel = ({ videos }: ReelsCarouselProps) => {
       </div>
     </section>
   );
-};
+}; 

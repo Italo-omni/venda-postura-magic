@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { trackEvent } from "@/utils/metaPixel";
@@ -40,7 +39,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
   });
   const [hasTrackedPaymentInfo, setHasTrackedPaymentInfo] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
@@ -128,7 +127,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="nome"
             value={formData.nome}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -140,7 +139,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
             type="email"
             name="email"
             value={formData.email}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -151,7 +150,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="telefone"
             value={formData.telefone}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -162,7 +161,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="cep"
             value={formData.cep}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -175,7 +174,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
         <Input
           name="endereco"
           value={formData.endereco}
-          onChange={handleChange}
+          onChange={handleInputChange}
           required
         />
       </div>
@@ -188,7 +187,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="numero"
             value={formData.numero}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -199,7 +198,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="complemento"
             value={formData.complemento}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
       </div>
@@ -212,7 +211,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="bairro"
             value={formData.bairro}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -223,7 +222,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="cidade"
             value={formData.cidade}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -234,7 +233,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <Input
             name="estado"
             value={formData.estado}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required
           />
         </div>
@@ -248,7 +247,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <select
             name="quantidade"
             value={formData.quantidade}
-            onChange={handleChange}
+            onChange={handleInputChange}
             className="w-full rounded-md border border-input bg-background px-3 py-2"
             required
           >
