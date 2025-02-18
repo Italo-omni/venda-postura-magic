@@ -4,15 +4,15 @@ import { VideoCarousel } from "./VideoCarousel";
 
 const videos = [
   {
-    id: "VIDEO_ID_1",
+    id: "wLv2QMC_GyQ",
     title: "Como o ActiveFit™ funciona"
   },
   {
-    id: "VIDEO_ID_2",
+    id: "wLv2QMC_GyQ",
     title: "Depoimento de clientes"
   },
   {
-    id: "VIDEO_ID_3",
+    id: "wLv2QMC_GyQ",
     title: "Tutorial de uso"
   }
 ];
