@@ -137,10 +137,10 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 pb-32">
       <ProductSummary />
       
-      <div className="fixed bottom-6 right-6 bg-white p-4 rounded-lg shadow-lg border border-gray-200 w-72 animate-fade-in">
+      <div className="fixed bottom-6 right-6 bg-white p-4 rounded-lg shadow-lg border border-gray-200 w-72 animate-fade-in max-w-[calc(100%-3rem)] md:max-w-[300px]">
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-semibold text-gray-800">Seu Pedido</h3>
           <ShoppingCart className="w-5 h-5 text-primary" />
