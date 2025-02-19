@@ -4,6 +4,7 @@ import { trackEvent } from "@/utils/metaPixel";
 import { ProductSummary } from "./checkout/ProductSummary";
 import { FormActions } from "./checkout/FormActions";
 import { toast } from "sonner";
+import { ShoppingCart, MinusCircle, PlusCircle } from "lucide-react";
 
 interface FormData {
   nome: string;
@@ -45,7 +46,6 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
-    // Track AddPaymentInfo only once when the first field is filled
     if (!hasTrackedPaymentInfo && value !== "") {
       trackEvent('AddPaymentInfo', {
         content_name: 'Almofada Ergonômica Corretora de Postura',
@@ -55,6 +55,15 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
       });
       setHasTrackedPaymentInfo(true);
     }
+  };
+
+  const handleQuantityChange = (type: 'increase' | 'decrease') => {
+    setFormData(prev => {
+      const newQuantity = type === 'increase' 
+        ? Math.min(prev.quantidade + 1, 5)
+        : Math.max(prev.quantidade - 1, 1);
+      return { ...prev, quantidade: newQuantity };
+    });
   };
 
   const sendEmail = async (data: FormData) => {
@@ -122,10 +131,55 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     return requiredFields.every(field => formData[field as keyof FormData]);
   };
 
+  const calculateInstallment = (quantity: number) => {
+    const total = 197 * quantity;
+    return (total / 12).toFixed(2);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <ProductSummary />
       
+      <div className="fixed bottom-6 right-6 bg-white p-4 rounded-lg shadow-lg border border-gray-200 w-72 animate-fade-in">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="font-semibold text-gray-800">Seu Pedido</h3>
+          <ShoppingCart className="w-5 h-5 text-primary" />
+        </div>
+        
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <button 
+              type="button"
+              onClick={() => handleQuantityChange('decrease')}
+              className="text-gray-500 hover:text-primary transition-colors"
+              disabled={formData.quantidade <= 1}
+            >
+              <MinusCircle className="w-5 h-5" />
+            </button>
+            
+            <span className="font-medium text-lg">{formData.quantidade}</span>
+            
+            <button 
+              type="button"
+              onClick={() => handleQuantityChange('increase')}
+              className="text-gray-500 hover:text-primary transition-colors"
+              disabled={formData.quantidade >= 5}
+            >
+              <PlusCircle className="w-5 h-5" />
+            </button>
+          </div>
+          
+          <div className="text-right">
+            <p className="text-lg font-bold text-primary">
+              12x R$ {calculateInstallment(formData.quantidade)}
+            </p>
+            <p className="text-sm text-gray-500">
+              ou R$ {(197 * formData.quantidade).toFixed(2)} à vista
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
