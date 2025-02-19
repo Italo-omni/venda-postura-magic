@@ -1,3 +1,4 @@
+
 import { Gallery } from "../Gallery";
 
 export const ProductSummary = () => {
@@ -21,8 +22,8 @@ export const ProductSummary = () => {
             <p className="text-gray-600">✅ Garantia de 30 dias</p>
           </div>
           <div className="mt-4">
-            <p className="text-3xl font-bold text-primary">R$ 197,00</p>
-            <p className="text-sm text-gray-500">ou 12x de R$ 16,42 sem juros</p>
+            <p className="text-3xl font-bold text-primary">12x R$ 16,42</p>
+            <p className="text-sm text-gray-500">ou R$ 197,00 à vista</p>
           </div>
         </div>
       </div>
