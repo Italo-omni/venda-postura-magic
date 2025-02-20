@@ -4,7 +4,7 @@ import { ReelsCarousel } from "./ReelsCarousel";
 
 // Apenas um vídeo principal
 const mainVideo = {
-  id: "KHcF6CHY1YQ",
+  id: "PXPLbt7Q5yA",
   title: "Como o ActiveFit™ funciona"
 };
 
