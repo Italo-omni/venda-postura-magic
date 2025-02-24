@@ -8,6 +8,20 @@ const recentSales = [
   { name: 'Carlos M.', location: 'Salvador, BA', time: '12 minutos' },
   { name: 'Fernanda R.', location: 'Belo Horizonte, MG', time: '15 minutos' },
   { name: 'Pedro H.', location: 'Brasília, DF', time: '18 minutos' },
+  { name: 'Juliana M.', location: 'Fortaleza, CE', time: '20 minutos' },
+  { name: 'Roberto S.', location: 'Recife, PE', time: '22 minutos' },
+  { name: 'Amanda C.', location: 'Porto Alegre, RS', time: '25 minutos' },
+  { name: 'Lucas O.', location: 'Manaus, AM', time: '28 minutos' },
+  { name: 'Beatriz L.', location: 'Florianópolis, SC', time: '30 minutos' },
+  { name: 'Gabriel T.', location: 'Vitória, ES', time: '32 minutos' },
+  { name: 'Carolina P.', location: 'Natal, RN', time: '35 minutos' },
+  { name: 'Marcelo R.', location: 'João Pessoa, PB', time: '38 minutos' },
+  { name: 'Isabela S.', location: 'Campo Grande, MS', time: '40 minutos' },
+  { name: 'Thiago M.', location: 'Goiânia, GO', time: '42 minutos' },
+  { name: 'Larissa C.', location: 'Belém, PA', time: '45 minutos' },
+  { name: 'Ricardo N.', location: 'Maceió, AL', time: '48 minutos' },
+  { name: 'Camila A.', location: 'São Luís, MA', time: '50 minutos' },
+  { name: 'Felipe S.', location: 'Aracaju, SE', time: '52 minutos' }
 ];
 
 export const RecentSales = () => {
@@ -40,16 +54,16 @@ export const RecentSales = () => {
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
       }`}
     >
-      <div className="bg-white rounded-full shadow-lg border border-gray-100 py-2 px-4 flex items-center gap-3">
-        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-          <ShoppingBag className="w-4 h-4 text-primary" />
+      <div className="bg-black/90 backdrop-blur-lg text-white rounded-xl shadow-lg py-2.5 px-4 flex items-center gap-3">
+        <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
+          <ShoppingBag className="w-5 h-5 text-white" />
         </div>
         <div>
-          <p className="text-sm">
-            <span className="font-medium">{sale.name}</span> de {sale.location}
+          <p className="text-sm font-medium">
+            {sale.name} • {sale.location}
           </p>
-          <p className="text-xs text-gray-500">
-            há {sale.time}
+          <p className="text-xs text-gray-400">
+            comprou há {sale.time}
           </p>
         </div>
       </div>
