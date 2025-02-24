@@ -26,13 +26,13 @@ export const FloatingCTA = () => {
   };
 
   return (
-    <div className="floating-cta">
+    <div className="floating-cta fixed bottom-4 right-4 z-50">
       <button
         id="comprar"
         onClick={handleClick}
-        className="cta-button inline-flex items-center gap-2"
+        className="cta-button inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200 ease-in-out"
       >
-        <ShoppingCart className="w-5 h-5" />
+        <ShoppingCart className="w-6 h-6" />
         Comprar Agora
       </button>
     </div>
