@@ -73,9 +73,9 @@ export const HeroSection = () => {
   const navigate = useNavigate();
   return (
     <>
-      {/* Logo flutuante */}
-      <div className="fixed top-4 left-4 z-50">
-        <h1 className="text-xl font-sans font-bold text-white bg-black/90 px-4 py-2 rounded-full shadow-md">
+      {/* Logo flutuante com animação */}
+      <div className="fixed top-3 left-3 z-50 animate-fade-in">
+        <h1 className="text-sm font-sans font-bold text-white bg-black/90 px-3 py-1.5 rounded-full shadow-md hover:bg-black transition-colors duration-300">
           VoltaraTech
         </h1>
       </div>
