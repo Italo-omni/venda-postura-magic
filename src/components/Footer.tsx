@@ -108,7 +108,7 @@ export const Footer = () => {
           <div className="text-center text-sm text-gray-600">
             <p>&copy; {new Date().getFullYear()} VoltaraTech. Todos os direitos reservados.</p>
             <p className="mt-2">
-              CNPJ: 12.345.678/0001-90 | Rua Exemplo, 123 - São Paulo, SP
+              CNPJ: 45.320.297/0001-00 | Centro - Linhares, ES
             </p>
           </div>
         </div>

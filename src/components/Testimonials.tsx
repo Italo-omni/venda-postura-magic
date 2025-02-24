@@ -157,7 +157,7 @@ const testimonials: Testimonial[] = [
   },
   {
     name: "Maria Silva",
-    location: "São Paulo, SP",
+    location: "Linhares, ES",
     rating: 5,
     date: "15/03/2024",
     image: "https://down-br.img.susercontent.com/file/sg-11134201-7rfig-m3dxdqyiqs7idc.webp",

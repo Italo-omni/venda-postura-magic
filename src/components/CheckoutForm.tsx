@@ -126,7 +126,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     await sendEmail(formData);
 
     const paymentLinks = {
-      1: 'https://mpago.la/33BbHxE',
+      1: 'https://mpago.la/134EhTT',
       2: 'https://mpago.la/1VGHtrM',
       3: 'https://mpago.la/2uCYHUx',
       4: 'https://mpago.la/1gXywPx',
