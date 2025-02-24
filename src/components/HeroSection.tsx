@@ -73,14 +73,15 @@ export const HeroSection = () => {
   const navigate = useNavigate();
   return (
     <>
+      {/* Logo flutuante */}
+      <div className="fixed top-4 left-4 z-50">
+        <h1 className="text-xl font-serif italic font-black bg-white px-4 py-2 rounded-full shadow-md">
+          VoltaraTech
+        </h1>
+      </div>
+
       <div className="relative bg-gradient-to-b from-primary/5 via-white to-white py-8 md:py-16 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex justify-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-serif italic text-primary">
-              VoltaraTech
-            </h1>
-          </div>
-
           <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
             <div className="flex-1 text-left w-full">
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6 animate-fade-in">
