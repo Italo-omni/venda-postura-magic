@@ -28,6 +28,17 @@ export default {
         primary: {
           DEFAULT: "#4B9FE1",
           foreground: "#FFFFFF",
+          50: "#EDF5FC",
+          100: "#D1E5F7",
+          200: "#A3CCF0",
+          300: "#75B3E8",
+          400: "#4B9FE1",
+          500: "#2485D3",
+          600: "#1C69A8",
+          700: "#154F7E",
+          800: "#0E3553",
+          900: "#071A29",
+          950: "#030D15"
         },
         secondary: {
           DEFAULT: "#F2FCE2",
