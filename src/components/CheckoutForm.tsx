@@ -201,8 +201,54 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     <form onSubmit={handleSubmit} className="space-y-6">
       <ProductSummary />
 
+      <div className="bg-white p-6 rounded-lg border border-gray-200 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="font-semibold">Entrega Garantida</h4>
+              <p className="text-sm text-gray-600">Enviamos para todo Brasil</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="font-semibold">Pagamento Seguro</h4>
+              <p className="text-sm text-gray-600">Via Mercado Pago</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="font-semibold">Garantia de 30 dias</h4>
+              <p className="text-sm text-gray-600">Satisfação garantida</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-        <h3 className="text-lg font-semibold mb-4">Selecione as cores e quantidades</h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold">Selecione as cores e quantidades</h3>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-600">Produto original</span>
+            <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {cores.map((cor) => (
             <div key={cor.id} className="bg-white p-4 rounded-md border border-gray-200">
@@ -238,6 +284,17 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
             </div>
           ))}
         </div>
+        <div className="mt-4 bg-blue-50 p-4 rounded-md border border-blue-200">
+          <div className="flex items-start gap-3">
+            <svg className="w-6 h-6 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <p className="text-sm text-blue-800 font-medium">Promoção por tempo limitado!</p>
+              <p className="text-sm text-blue-600">Aproveite o frete grátis para todo Brasil</p>
+            </div>
+          </div>
+        </div>
         <div className="mt-4 text-right">
           <p className="text-sm text-gray-600">
             Total selecionado: {getTotalQuantidade()} {getTotalQuantidade() === 1 ? "unidade" : "unidades"}
@@ -245,6 +302,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
           <p className="text-lg font-semibold">
             Total: R$ {(197 * getTotalQuantidade()).toFixed(2)}
           </p>
+          <p className="text-sm text-green-600">Em até 12x no cartão</p>
         </div>
       </div>
 
@@ -369,6 +427,40 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
       </div>
 
       <FormActions formData={formData} isValid={isFormValid()} />
+
+      <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <h3 className="text-lg font-semibold mb-4">Avaliações dos Clientes</h3>
+        <div className="space-y-4">
+          <div className="flex items-start gap-4 pb-4 border-b">
+            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+              <span className="text-gray-600 font-medium">MA</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h4 className="font-medium">Maria A.</h4>
+                <div className="flex text-yellow-400">
+                  {"★".repeat(5)}
+                </div>
+              </div>
+              <p className="text-gray-600 mt-1">Produto excelente! Melhorou muito minha postura no trabalho.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+              <span className="text-gray-600 font-medium">JP</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h4 className="font-medium">João P.</h4>
+                <div className="flex text-yellow-400">
+                  {"★".repeat(5)}
+                </div>
+              </div>
+              <p className="text-gray-600 mt-1">Entrega rápida e produto de qualidade. Recomendo!</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </form>
   );
 };
