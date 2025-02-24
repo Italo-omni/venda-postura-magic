@@ -2,6 +2,7 @@ import { ArrowRight, ShieldCheck, Truck, Clock, Phone, Shield, Award, ThumbsUp }
 import { useNavigate } from "react-router-dom";
 import { ReelsCarousel } from "./ReelsCarousel";
 import { LiveActivity } from './LiveActivity';
+import { FloatingCTA } from './FloatingCTA';
 
 // Apenas um vídeo principal
 const mainVideo = {
@@ -219,6 +220,7 @@ export const HeroSection = () => {
       </div>
       
       <ReelsCarousel videos={reelsVideos} />
+      <FloatingCTA />
     </>
   );
 };
