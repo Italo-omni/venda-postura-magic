@@ -30,10 +30,10 @@ export const FloatingCTA = () => {
       <button
         id="comprar"
         onClick={handleClick}
-        className="cta-button inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200 ease-in-out"
+        className="cta-button inline-flex items-center gap-2 bg-cta hover:bg-[#fdb989] text-cta-foreground font-bold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200 ease-in-out"
       >
         <ShoppingCart className="w-6 h-6" />
-        Comprar Agora
+        <span className="whitespace-nowrap">Comprar Agora</span>
       </button>
     </div>
   );
