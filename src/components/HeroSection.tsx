@@ -1,4 +1,4 @@
-import { ArrowRight, ShieldCheck, Truck, Clock } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck, Clock, Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ReelsCarousel } from "./ReelsCarousel";
 
@@ -75,6 +75,12 @@ export const HeroSection = () => {
     <>
       <div className="relative bg-gradient-to-b from-primary/5 via-white to-white py-8 md:py-16 px-4">
         <div className="container mx-auto max-w-6xl">
+          <div className="flex justify-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-serif italic text-primary">
+              VoltaraTech
+            </h1>
+          </div>
+
           <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
             <div className="flex-1 text-left w-full">
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6 animate-fade-in">
@@ -127,6 +133,20 @@ export const HeroSection = () => {
                   </div>
                   <span>Envio em 24h</span>
                 </div>
+              </div>
+
+              <div className="flex items-center gap-3 text-gray-700 mb-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                  <Phone className="w-4 h-4 text-white" />
+                </div>
+                <a 
+                  href="https://wa.me/5527992758442" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-green-600 hover:text-green-700"
+                >
+                  Suporte via WhatsApp
+                </a>
               </div>
 
               <button 
