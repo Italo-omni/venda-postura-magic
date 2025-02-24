@@ -50,7 +50,7 @@ export const RecentSales = () => {
 
   return (
     <div
-      className={`fixed bottom-7 left-4 z-[100] transform transition-all duration-500 ${
+      className={`fixed bottom-20 left-4 z-[100] transform transition-all duration-500 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
       }`}
     >
