@@ -48,14 +48,14 @@ export const RecentPurchaseNotification = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Intervalo entre notificações: 45 segundos a 2.5 minutos
-    const getRandomInterval = () => Math.floor(Math.random() * (150000 - 45000) + 45000);
+    // Intervalo entre notificações: 2 a 4 minutos
+    const getRandomInterval = () => Math.floor(Math.random() * (240000 - 120000) + 120000);
     
-    // Duração da notificação: 5 a 8 segundos
-    const getRandomDuration = () => Math.floor(Math.random() * (8000 - 5000) + 5000);
+    // Duração da notificação: 6 a 10 segundos
+    const getRandomDuration = () => Math.floor(Math.random() * (10000 - 6000) + 6000);
     
-    // Delay inicial: 10 a 30 segundos
-    const getInitialDelay = () => Math.floor(Math.random() * (30000 - 10000) + 10000);
+    // Delay inicial: 15 a 45 segundos
+    const getInitialDelay = () => Math.floor(Math.random() * (45000 - 15000) + 15000);
     
     const getRandomPurchase = () => {
       let newIndex;
@@ -66,8 +66,8 @@ export const RecentPurchaseNotification = () => {
     };
 
     const showNotification = () => {
-      // Apenas 50% de chance de mostrar a notificação
-      if (Math.random() < 0.5) {
+      // 40% de chance de mostrar a notificação
+      if (Math.random() < 0.4) {
         setIsVisible(true);
         setCurrentPurchase(getRandomPurchase());
         
@@ -90,8 +90,8 @@ export const RecentPurchaseNotification = () => {
 
   return (
     <div
-      className={`fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 transition-all duration-300 transform z-50 ${
-        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+      className={`fixed top-4 right-4 bg-white rounded-lg shadow-lg p-4 transition-all duration-300 transform z-50 ${
+        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
     >
       <div className="flex items-center gap-3">
