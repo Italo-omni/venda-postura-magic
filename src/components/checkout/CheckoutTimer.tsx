@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Clock } from "lucide-react";
@@ -26,7 +25,7 @@ export const CheckoutTimer = () => {
   const seconds = timeLeft % 60;
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="fixed top-4 right-4 z-40">
       <div className="bg-red-50 border border-red-100 rounded-lg px-4 py-2 shadow-lg animate-pulse">
         <div className="flex items-center gap-2 text-red-600">
           <Clock className="w-4 h-4" />
