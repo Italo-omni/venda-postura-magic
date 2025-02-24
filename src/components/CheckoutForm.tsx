@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { trackEvent } from "@/utils/metaPixel";
@@ -18,6 +17,7 @@ interface FormData {
   cidade: string;
   estado: string;
   quantidade: number;
+  cor: string;
 }
 
 interface CheckoutFormProps {
@@ -81,7 +81,9 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
               Bairro: ${data.bairro}
               Cidade: ${data.cidade}
               Estado: ${data.estado}
-              CEP: ${data.cep}`
+              CEP: ${data.cep}
+              Cor: ${data.cor}
+              Quantidade: ${data.quantidade}`
           }
         })
       });
