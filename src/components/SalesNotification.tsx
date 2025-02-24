@@ -2,18 +2,7 @@ import { useEffect, useState } from 'react';
 import { ShoppingBag, X } from 'lucide-react';
 
 const products = [
-  'Almofada Ergonômica',
-  'Suporte para Notebook',
-  'Mouse Pad Ergonômico',
-  'Apoio para Pés',
-  'Suporte para Monitor',
-  'Teclado Ergonômico',
-  'Cadeira Home Office',
-  'Suporte para Tablet',
-  'Kit Ergonômico Completo',
-  'Apoio para Punho',
-  'Mesa Ajustável',
-  'Luminária de Mesa LED',
+  'Almofada Ergonômica'
 ];
 
 const cities = [

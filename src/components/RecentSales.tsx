@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { ShoppingBag } from 'lucide-react';
 
 const recentSales = [
-  { name: 'Maria S.', location: 'São Paulo, SP', time: '2 minutos atrás', quantity: 1 },
-  { name: 'João P.', location: 'Rio de Janeiro, RJ', time: '5 minutos atrás', quantity: 2 },
-  { name: 'Ana L.', location: 'Curitiba, PR', time: '8 minutos atrás', quantity: 1 },
-  { name: 'Carlos M.', location: 'Salvador, BA', time: '12 minutos atrás', quantity: 3 },
+  { name: 'Maria S.', location: 'São Paulo, SP', time: '2 minutos' },
+  { name: 'João P.', location: 'Rio de Janeiro, RJ', time: '5 minutos' },
+  { name: 'Ana L.', location: 'Curitiba, PR', time: '8 minutos' },
+  { name: 'Carlos M.', location: 'Salvador, BA', time: '12 minutos' },
+  { name: 'Fernanda R.', location: 'Belo Horizonte, MG', time: '15 minutos' },
+  { name: 'Pedro H.', location: 'Brasília, DF', time: '18 minutos' },
 ];
 
 export const RecentSales = () => {
@@ -12,40 +15,41 @@ export const RecentSales = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const showNotification = () => {
+    // Intervalo entre notificações: 8 a 12 segundos
+    const interval = Math.floor(Math.random() * (12000 - 8000) + 8000);
+    
+    // Duração da notificação: 4 segundos
+    const duration = 4000;
+    
+    const timer = setInterval(() => {
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
-        setTimeout(() => {
-          setCurrentSale((prev) => (prev + 1) % recentSales.length);
-        }, 300);
-      }, 4000);
-    };
+        setCurrentSale((prev) => (prev + 1) % recentSales.length);
+      }, duration);
+    }, interval);
 
-    const interval = setInterval(showNotification, 10000);
-    showNotification();
-
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
 
   const sale = recentSales[currentSale];
 
   return (
     <div
-      className={`fixed bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 transition-all duration-300 transform z-50 ${
+      className={`fixed bottom-4 left-4 z-50 transform transition-all duration-500 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
       }`}
     >
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-          <span className="text-green-600 text-sm font-medium">{sale.quantity}x</span>
+      <div className="bg-white rounded-full shadow-lg border border-gray-100 py-2 px-4 flex items-center gap-3">
+        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+          <ShoppingBag className="w-4 h-4 text-primary" />
         </div>
         <div>
           <p className="text-sm">
             <span className="font-medium">{sale.name}</span> de {sale.location}
           </p>
           <p className="text-xs text-gray-500">
-            Comprou {sale.quantity} {sale.quantity > 1 ? 'unidades' : 'unidade'} {sale.time}
+            há {sale.time}
           </p>
         </div>
       </div>
