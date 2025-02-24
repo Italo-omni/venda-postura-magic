@@ -18,6 +18,9 @@ interface FormData {
   estado: string;
   quantidade: number;
   cor: string;
+  quantidadePorCor: {
+    [key: string]: number;
+  };
 }
 
 interface CheckoutFormProps {
@@ -37,8 +40,16 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     cidade: "",
     estado: "",
     quantidade: 1,
+    cor: "",
+    quantidadePorCor: {},
   });
   const [hasTrackedPaymentInfo, setHasTrackedPaymentInfo] = useState(false);
+
+  const cores = [
+    { id: "preto", nome: "Preto", hex: "#000000" },
+    { id: "cinza", nome: "Cinza", hex: "#808080" },
+    { id: "bege", nome: "Bege", hex: "#F5F5DC" },
+  ];
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -57,8 +68,27 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
     }
   };
 
+  const handleColorQuantityChange = (cor: string, quantidade: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      quantidadePorCor: {
+        ...prev.quantidadePorCor,
+        [cor]: quantidade,
+      },
+    }));
+  };
+
+  const getTotalQuantidade = () => {
+    return Object.values(formData.quantidadePorCor).reduce((a, b) => a + b, 0);
+  };
+
   const sendEmail = async (data: FormData) => {
     try {
+      const colorSummary = Object.entries(data.quantidadePorCor)
+        .filter(([_, qty]) => qty > 0)
+        .map(([cor, qty]) => `${cores.find(c => c.id === cor)?.nome}: ${qty}`)
+        .join('\n              ');
+
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: {
@@ -82,8 +112,9 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
               Cidade: ${data.cidade}
               Estado: ${data.estado}
               CEP: ${data.cep}
-              Cor: ${data.cor}
-              Quantidade: ${data.quantidade}`
+              Quantidades por cor:
+              ${colorSummary}
+              Total: ${getTotalQuantidade()} unidades`
           }
         })
       });
@@ -101,6 +132,11 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (getTotalQuantidade() === 0) {
+      toast.error("Selecione pelo menos uma unidade");
+      return;
+    }
+
     trackEvent('Lead', {
       content_name: 'Almofada Ergonômica Corretora de Postura',
       content_category: 'form',
@@ -112,7 +148,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
       content_name: "Almofada Ergonômica Corretora de Postura",
       content_type: "product",
       content_ids: ["ALMOFADA001"],
-      value: 197.0 * formData.quantidade,
+      value: 197.0 * getTotalQuantidade(),
       currency: "BRL",
     });
 
@@ -126,7 +162,7 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
       5: 'https://mpago.la/21o4JXA'
     };
 
-    window.open(paymentLinks[formData.quantidade as keyof typeof paymentLinks], "_self");
+    window.open(paymentLinks[getTotalQuantidade() as keyof typeof paymentLinks], "_self");
   };
 
   const isFormValid = () => {
@@ -137,6 +173,46 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <ProductSummary />
+
+      <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 className="text-lg font-semibold mb-4">Selecione as cores e quantidades</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {cores.map((cor) => (
+            <div key={cor.id} className="bg-white p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <div
+                  className="w-6 h-6 rounded-full border border-gray-300"
+                  style={{ backgroundColor: cor.hex }}
+                />
+                <span className="font-medium">{cor.nome}</span>
+              </div>
+              <select
+                value={formData.quantidadePorCor[cor.id] || 0}
+                onChange={(e) => handleColorQuantityChange(cor.id, Number(e.target.value))}
+                className="w-full rounded-md border border-input bg-background px-3 py-2"
+              >
+                {[0, 1, 2, 3, 4, 5].map((num) => (
+                  <option
+                    key={num}
+                    value={num}
+                    disabled={num + getTotalQuantidade() - (formData.quantidadePorCor[cor.id] || 0) > 5}
+                  >
+                    {num} {num === 1 ? "unidade" : "unidades"}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 text-right">
+          <p className="text-sm text-gray-600">
+            Total selecionado: {getTotalQuantidade()} {getTotalQuantidade() === 1 ? "unidade" : "unidades"}
+          </p>
+          <p className="text-lg font-semibold">
+            Total: R$ {(197 * getTotalQuantidade()).toFixed(2)}
+          </p>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -255,27 +331,6 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
             onChange={handleInputChange}
             required
           />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Quantidade *
-          </label>
-          <select
-            name="quantidade"
-            value={formData.quantidade}
-            onChange={handleInputChange}
-            className="w-full rounded-md border border-input bg-background px-3 py-2"
-            required
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {num} {num === 1 ? "unidade" : "unidades"} - R$ {(197 * num).toFixed(2)}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
 
