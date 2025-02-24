@@ -12,7 +12,7 @@ const mainVideo = {
 // Reels videos permanecem os mesmos
 const reelsVideos = [
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/sos-app-5afc4.appspot.com/o/Feed%202%20narrado%201080.mp4?alt=media&token=33688069-22bf-4ce2-9fbc-429a0b3760a2",
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618626591.mp4?alt=media&token=47d12d78-fa8c-471b-8a4f-e01b9704156d",
     title: "Depoimentos Reais",
     thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fdepoimentos.jpg?alt=media",
     duration: "0:45",
@@ -22,7 +22,7 @@ const reelsVideos = [
     tags: ["Depoimentos", "Resultados", "Clientes Satisfeitos"]
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/sos-app-5afc4.appspot.com/o/snapdouyin.app-hd-1736618376516.mp4?alt=media&token=7541e01c-3b22-4b82-bdcf-3bed2c1264d2",
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736618376516.mp4?alt=media&token=12205df3-59f0-4364-b280-3894a403c38a",
     title: "Guia de Uso",
     thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fcomo_usar.jpg?alt=media",
     duration: "0:30",
@@ -32,7 +32,7 @@ const reelsVideos = [
     tags: ["Tutorial", "Passo a Passo", "Dicas"]
   },
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/sos-app-5afc4.appspot.com/o/mostrando-produto.mp4?alt=media&token=51a0584e-6e1d-48b1-9134-657c92841fb7",
+    url: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/VoltaraTech%2Fsnapdouyin.app-hd-1736619151195.mp4?alt=media&token=c2678058-adcf-43a4-9317-1a84e6cdd7fe",
     title: "Demonstração do produto",
     thumbnail: "https://firebasestorage.googleapis.com/v0/b/peca-ja-a8ba4.appspot.com/o/thumbnails%2Fresultados.jpg?alt=media",
     duration: "0:35",
