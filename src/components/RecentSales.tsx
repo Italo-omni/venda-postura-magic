@@ -33,7 +33,7 @@ export const RecentSales = () => {
     const interval = Math.floor(Math.random() * (12000 - 8000) + 8000);
     
     // Duração da notificação: 4 segundos
-    const duration = 4000;
+    const duration = 15000;
     
     const timer = setInterval(() => {
       setIsVisible(true);

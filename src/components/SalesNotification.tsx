@@ -77,11 +77,11 @@ export const SalesNotification = () => {
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
-      }, 5000);
+      }, 15000);
     };
 
     // Mostra a primeira notificação após 3 segundos
-    const initialTimeout = setTimeout(showNotification, 3000);
+    const initialTimeout = setTimeout(showNotification, 15000);
 
     // Configura o intervalo para mostrar notificações a cada 15 segundos
     const interval = setInterval(showNotification, 15000);
