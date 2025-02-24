@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
+    
     <footer className="bg-gray-50 pt-12 pb-6">
       <div className="container mx-auto px-4">
         {/* Trust indicators */}
@@ -72,7 +73,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>São Paulo, SP</span>
+                <span>Linhares, ES</span>
               </li>
             </ul>
           </div>
