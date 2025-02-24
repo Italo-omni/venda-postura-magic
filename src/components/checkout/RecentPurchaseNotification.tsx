@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ShoppingBag, X } from 'lucide-react';
 
 const recentPurchases = [
   { name: 'Maria S.', city: 'São Paulo', state: 'SP', timeAgo: '2 minutos', quantity: 2 },
@@ -46,6 +47,7 @@ const recentPurchases = [
 export const RecentPurchaseNotification = () => {
   const [currentPurchase, setCurrentPurchase] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
     // Intervalo entre notificações: 2 a 4 minutos
@@ -66,8 +68,7 @@ export const RecentPurchaseNotification = () => {
     };
 
     const showNotification = () => {
-      // 40% de chance de mostrar a notificação
-      if (Math.random() < 0.4) {
+      if (Math.random() < 0.4 && !isDismissed) {
         setIsVisible(true);
         setCurrentPurchase(getRandomPurchase());
         
@@ -76,53 +77,54 @@ export const RecentPurchaseNotification = () => {
         }, getRandomDuration());
       }
       
-      // Agenda próxima verificação
       setTimeout(showNotification, getRandomInterval());
     };
 
-    // Primeira execução com delay inicial
     const timeout = setTimeout(showNotification, getInitialDelay());
 
     return () => clearTimeout(timeout);
-  }, [currentPurchase]);
+  }, [currentPurchase, isDismissed]);
 
   const purchase = recentPurchases[currentPurchase];
 
+  if (isDismissed) return null;
+
   return (
     <div
-      className={`fixed top-4 right-4 bg-white rounded-lg shadow-lg p-4 transition-all duration-300 transform z-50 ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 max-w-sm w-full mx-4 transform transition-all duration-300 z-50 ${
         isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}
     >
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-          <div className="relative">
-            <span className="absolute -top-1 -right-1 bg-green-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-              {purchase.quantity}
-            </span>
-            <svg
-              className="w-5 h-5 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-              />
-            </svg>
+      <div className="bg-black/90 backdrop-blur-lg text-white rounded-xl shadow-lg overflow-hidden">
+        <div className="flex items-start p-4">
+          {/* App Icon */}
+          <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+            <ShoppingBag className="w-6 h-6 text-white" />
+          </div>
+
+          {/* Content */}
+          <div className="ml-4 flex-1">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-semibold text-sm">VoltaraTech</h3>
+                <p className="text-xs text-gray-300 mt-0.5">agora mesmo</p>
+              </div>
+              <button 
+                onClick={() => setIsDismissed(true)}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <p className="mt-1 text-sm">
+              {purchase.name} de {purchase.city}/{purchase.state} acabou de comprar {purchase.quantity} {purchase.quantity > 1 ? 'unidades' : 'unidade'}
+            </p>
           </div>
         </div>
-        <div>
-          <p className="text-sm">
-            <span className="font-medium">{purchase.name}</span> de{' '}
-            {purchase.city}/{purchase.state}
-          </p>
-          <p className="text-xs text-gray-500">
-            Comprou {purchase.quantity} {purchase.quantity > 1 ? 'unidades' : 'unidade'} há {purchase.timeAgo}
-          </p>
+
+        {/* Progress bar */}
+        <div className="w-full h-1 bg-primary/20">
+          <div className="h-full bg-primary origin-left animate-shrink" />
         </div>
       </div>
     </div>

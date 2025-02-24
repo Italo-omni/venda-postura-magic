@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -78,6 +77,15 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        shrink: {
+          from: { transform: 'scaleX(1)' },
+          to: { transform: 'scaleX(0)' }
+        }
+      },
+      animation: {
+        shrink: 'shrink var(--duration, 8s) linear forwards'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
