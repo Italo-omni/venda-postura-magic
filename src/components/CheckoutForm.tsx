@@ -46,9 +46,36 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
   const [hasTrackedPaymentInfo, setHasTrackedPaymentInfo] = useState(false);
 
   const cores = [
-    { id: "preto", nome: "Preto", hex: "#000000" },
-    { id: "cinza", nome: "Cinza", hex: "#808080" },
-    { id: "bege", nome: "Bege", hex: "#F5F5DC" },
+    {
+      id: "preto",
+      nome: "Preto",
+      hex: "#000000",
+      imagem: "https://ae-pic-a1.aliexpress-media.com/kf/S6b3df0d68ea143e6a59d4b6002105e82a.jpg_960x960q75.jpg_.avif"
+    },
+    {
+      id: "cinza",
+      nome: "Cinza",
+      hex: "#808080",
+      imagem: "https://ae-pic-a1.aliexpress-media.com/kf/Sf5183730eda847ac82f05459feeff412X.jpg_960x960q75.jpg_.avif"
+    },
+    {
+      id: "verde",
+      nome: "Verde",
+      hex: "#2E8B57",
+      imagem: "https://ae-pic-a1.aliexpress-media.com/kf/Sa665eb02590043ec88c65173e254106cf.jpg_960x960q75.jpg_.avif"
+    },
+    {
+      id: "azul",
+      nome: "Azul",
+      hex: "#4169E1",
+      imagem: "https://ae-pic-a1.aliexpress-media.com/kf/S36b27239a3bf402c96ff509896e78bbe1.jpg_960x960q75.jpg_.avif"
+    },
+    {
+      id: "rosa",
+      nome: "Rosa",
+      hex: "#FF69B4",
+      imagem: "https://ae-pic-a1.aliexpress-media.com/kf/Se4b724038c6e4328a38aeaddf1902dc9E.jpg_960x960q75.jpg_.avif"
+    }
   ];
 
   const handleInputChange = (
@@ -179,12 +206,19 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {cores.map((cor) => (
             <div key={cor.id} className="bg-white p-4 rounded-md border border-gray-200">
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-6 h-6 rounded-full border border-gray-300"
-                  style={{ backgroundColor: cor.hex }}
+              <div className="flex flex-col gap-2 mb-2">
+                <img 
+                  src={cor.imagem} 
+                  alt={`Almofada ${cor.nome}`} 
+                  className="w-full h-40 object-cover rounded-md"
                 />
-                <span className="font-medium">{cor.nome}</span>
+                <div className="flex items-center gap-2">
+                  <div
+                    className="w-6 h-6 rounded-full border border-gray-300"
+                    style={{ backgroundColor: cor.hex }}
+                  />
+                  <span className="font-medium">{cor.nome}</span>
+                </div>
               </div>
               <select
                 value={formData.quantidadePorCor[cor.id] || 0}
