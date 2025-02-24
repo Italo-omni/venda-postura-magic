@@ -26,7 +26,7 @@ const Index = () => {
       <Gallery />
       <Testimonials />
       <ShippingCalculator />
-      <RecentSales />
+      {/* <RecentSales /> */}
     </main>
   );
 };
