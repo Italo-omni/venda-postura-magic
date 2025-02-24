@@ -1,13 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        'primary': '#646cff',
+      },
       colors: {
-        cta: '#646cff', // Or whatever color you want for your CTA
+        'primary': '#646cff',
       },
       keyframes: {
         'fade-in': {
@@ -20,5 +23,5 @@ export default {
       }
     },
   },
-  // ... rest of your config ...
+  plugins: [],
 } 
