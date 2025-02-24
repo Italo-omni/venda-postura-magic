@@ -1,6 +1,7 @@
-import { ArrowRight, ShieldCheck, Truck, Clock, Phone } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck, Clock, Phone, Shield, Award, ThumbsUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ReelsCarousel } from "./ReelsCarousel";
+import { LiveActivity } from './LiveActivity';
 
 // Apenas um vídeo principal
 const mainVideo = {
@@ -84,6 +85,27 @@ export const HeroSection = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col-reverse md:flex-row items-center gap-6 md:gap-12">
             <div className="flex-1 text-left w-full">
+              {/* Badges de confiança */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
+                  <Shield className="w-4 h-4" />
+                  <span className="text-sm font-semibold">Garantia de 30 dias</span>
+                </div>
+                <div className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full">
+                  <Award className="w-4 h-4" />
+                  <span className="text-sm font-semibold">Mais Vendido</span>
+                </div>
+                <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full">
+                  <ThumbsUp className="w-4 h-4" />
+                  <span className="text-sm font-semibold">50mil+ clientes</span>
+                </div>
+              </div>
+
+              {/* Live Activity */}
+              <div className="mb-6">
+                <LiveActivity />
+              </div>
+
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6 animate-fade-in">
                 <ShieldCheck className="w-5 h-5" />
                 <span className="text-sm font-semibold">Garantia de 30 dias + Frete Grátis</span>
@@ -157,6 +179,27 @@ export const HeroSection = () => {
                 Comprar Agora em 12x de R$ 16,42
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
+
+              {/* Adicionar seção de garantias */}
+              <div className="mt-8 bg-white p-4 rounded-lg border border-gray-200">
+                <h3 className="font-semibold text-lg mb-4">Compra 100% Segura</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-start gap-2">
+                    <Shield className="w-5 h-5 text-primary" />
+                    <div>
+                      <p className="font-medium text-sm">Garantia de 30 dias</p>
+                      <p className="text-xs text-gray-600">Devolução garantida</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Award className="w-5 h-5 text-primary" />
+                    <div>
+                      <p className="font-medium text-sm">Produto Original</p>
+                      <p className="text-xs text-gray-600">Qualidade garantida</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <div className="flex-1 w-full">
