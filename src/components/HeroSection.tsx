@@ -75,7 +75,7 @@ export const HeroSection = () => {
     <>
       {/* Logo flutuante */}
       <div className="fixed top-4 left-4 z-50">
-        <h1 className="text-xl font-serif italic font-black bg-white px-4 py-2 rounded-full shadow-md">
+        <h1 className="text-xl font-sans font-bold text-white bg-black/90 px-4 py-2 rounded-full shadow-md">
           VoltaraTech
         </h1>
       </div>
