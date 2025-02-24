@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Shield, CreditCard, Phone } from "lucide-react";
 
@@ -9,6 +8,14 @@ interface FormActionsProps {
 
 export const FormActions = ({ formData, isValid }: FormActionsProps) => {
   const generateWhatsAppMessage = () => {
+    // Gera o resumo das cores selecionadas
+    const coresSelecionadas = Object.entries(formData.quantidadePorCor)
+      .filter(([_, quantidade]) => quantidade > 0)
+      .map(([cor, quantidade]) => `• ${cor.charAt(0).toUpperCase() + cor.slice(1)}: ${quantidade}`)
+      .join('\n');
+
+    const valorTotal = Object.values(formData.quantidadePorCor).reduce((total, qtd) => total + (qtd * 197), 0);
+
     const message = `🛍️ *NOVO PEDIDO*
 
 ━━━━━━━━━━━━━━━━
@@ -28,8 +35,10 @@ ${formData.complemento ? `• Complemento: ${formData.complemento}\n` : ''}• B
 🛒 *DETALHES DO PEDIDO*
 ━━━━━━━━━━━━━━━━
 • Produto: Almofada Ergonômica Corretora de Postura
-• Quantidade: ${formData.quantidade}
-• Valor Total: *R$ ${(197 * formData.quantidade).toFixed(2)}*
+• Cores e Quantidades:
+${coresSelecionadas}
+• Quantidade Total: ${Object.values(formData.quantidadePorCor).reduce((a, b) => a + b, 0)}
+• Valor Total: *R$ ${valorTotal.toFixed(2)}*
 
 _Agradecemos pela preferência!_ ✨`;
 

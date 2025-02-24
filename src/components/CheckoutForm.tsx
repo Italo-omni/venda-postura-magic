@@ -111,10 +111,13 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
 
   const sendEmail = async (data: FormData) => {
     try {
+      const valorTotal = Object.values(data.quantidadePorCor).reduce((total, qtd) => total + (qtd * 197), 0);
+      const quantidadeTotal = Object.values(data.quantidadePorCor).reduce((a, b) => a + b, 0);
+
       const colorSummary = Object.entries(data.quantidadePorCor)
         .filter(([_, qty]) => qty > 0)
-        .map(([cor, qty]) => `${cores.find(c => c.id === cor)?.nome}: ${qty}`)
-        .join('\n              ');
+        .map(([cor, qty]) => `              • ${cores.find(c => c.id === cor)?.nome}: ${qty} unidade${qty > 1 ? 's' : ''}`)
+        .join('\n');
 
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
@@ -129,19 +132,33 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
             to_email: 'voltaratech2024@gmail.com',
             from_name: data.nome,
             from_email: data.email,
-            message: `Novo pedido recebido:
-              Nome: ${data.nome}
-              Email: ${data.email}
-              Telefone: ${data.telefone}
-              Endereço: ${data.endereco}, ${data.numero}
-              Complemento: ${data.complemento}
-              Bairro: ${data.bairro}
-              Cidade: ${data.cidade}
-              Estado: ${data.estado}
-              CEP: ${data.cep}
-              Quantidades por cor:
-              ${colorSummary}
-              Total: ${getTotalQuantidade()} unidades`
+            message: `NOVO PEDIDO RECEBIDO
+            
+━━━━━━━━━━━━━━━━
+DADOS DO CLIENTE
+━━━━━━━━━━━━━━━━
+                Nome: ${data.nome}
+                Email: ${data.email}
+                Telefone: ${data.telefone}
+
+━━━━━━━━━━━━━━━━
+ENDEREÇO DE ENTREGA
+━━━━━━━━━━━━━━━━
+                Endereço: ${data.endereco}, ${data.numero}
+                ${data.complemento ? `Complemento: ${data.complemento}\n                ` : ''}Bairro: ${data.bairro}
+                Cidade: ${data.cidade}/${data.estado}
+                CEP: ${data.cep}
+
+━━━━━━━━━━━━━━━━
+DETALHES DO PEDIDO
+━━━━━━━━━━━━━━━━
+                Produto: Almofada Ergonômica Corretora de Postura
+                
+                Cores e Quantidades:
+${colorSummary}
+
+                Quantidade Total: ${quantidadeTotal} unidade${quantidadeTotal > 1 ? 's' : ''}
+                Valor Total: R$ ${valorTotal.toFixed(2)}`
           }
         })
       });
