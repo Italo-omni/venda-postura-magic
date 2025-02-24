@@ -27,17 +27,14 @@ export const CheckoutTimer = () => {
 
   return (
     <div className="fixed top-4 right-4 z-50">
-      <div className="bg-red-50 border border-red-100 rounded-lg p-4 shadow-lg animate-pulse">
-        <div className="flex items-center gap-2 text-red-600 font-semibold mb-2">
-          <Clock className="w-5 h-5" />
-          <span>Oferta por tempo limitado!</span>
+      <div className="bg-red-50 border border-red-100 rounded-lg px-4 py-2 shadow-lg animate-pulse">
+        <div className="flex items-center gap-2 text-red-600">
+          <Clock className="w-4 h-4" />
+          <span className="font-medium">Oferta por tempo limitado!</span>
+          <span className="font-bold">
+            {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
+          </span>
         </div>
-        <div className="text-2xl font-bold text-red-700">
-          {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
-        </div>
-        <p className="text-sm text-red-600 mt-1">
-          Esta oferta expira em breve!
-        </p>
       </div>
     </div>
   );
