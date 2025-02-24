@@ -119,11 +119,21 @@ export const CheckoutForm = ({ onSuccess }: CheckoutFormProps) => {
       content_name: "Almofada Ergonômica Corretora de Postura",
       content_type: "product",
       content_ids: ["ALMOFADA001"],
-      value: 197.0,
+      value: 197.0 * formData.quantidade,
       currency: "BRL",
     });
+
     await sendEmail(formData);
-    window.open('https://mpago.la/2QBV6p5', "_self");
+
+    const paymentLinks = {
+      1: 'https://mpago.la/33BbHxE',
+      2: 'https://mpago.la/1VGHtrM',
+      3: 'https://mpago.la/2uCYHUx',
+      4: 'https://mpago.la/1gXywPx',
+      5: 'https://mpago.la/21o4JXA'
+    };
+
+    window.open(paymentLinks[formData.quantidade as keyof typeof paymentLinks], "_self");
   };
 
   const isFormValid = () => {

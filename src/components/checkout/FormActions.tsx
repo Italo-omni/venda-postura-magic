@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Shield, CreditCard, WhatsappLogo } from "lucide-react";
 
@@ -48,10 +47,10 @@ _Agradecemos pela preferência!_ ✨`;
           <Shield className="w-5 h-5 text-primary" />
           <h3 className="font-medium">Pagamento 100% Seguro</h3>
         </div>
-        <div className="grid grid-cols-3 gap-2 mb-4">
-          <img src="/visa.png" alt="Visa" className="h-6 object-contain" />
-          <img src="/mastercard.png" alt="Mastercard" className="h-6 object-contain" />
-          <img src="/elo.png" alt="Elo" className="h-6 object-contain" />
+        <div className="flex flex-col gap-2 mb-4">
+          <p className="text-sm text-gray-600">✓ Cartão de Crédito</p>
+          <p className="text-sm text-gray-600">✓ Boleto Bancário</p>
+          <p className="text-sm text-gray-600">✓ PIX</p>
         </div>
         <p className="text-sm text-gray-600 mb-4">
           🔒 Seus dados estão protegidos com criptografia de ponta a ponta

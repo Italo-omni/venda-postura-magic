@@ -8,7 +8,7 @@ export const ProductSummary = () => {
       <div className="flex flex-col md:flex-row gap-6">
         <div className="md:w-1/3">
           <img 
-            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms178agnv19.webp"
+            src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-m3xms1787niz6b.webp"
             alt="Almofada Ergonômica"
             className="w-full h-auto rounded-lg"
           />
