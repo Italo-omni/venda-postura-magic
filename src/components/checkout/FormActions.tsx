@@ -1,8 +1,21 @@
+
 import { Button } from "@/components/ui/button";
 import { Shield, CreditCard, Phone } from "lucide-react";
 
 interface FormActionsProps {
-  formData: any;
+  formData: {
+    nome: string;
+    email: string;
+    telefone: string;
+    endereco: string;
+    numero: string;
+    complemento?: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
+    cep: string;
+    quantidadePorCor: Record<string, number>;
+  };
   isValid: boolean;
 }
 
@@ -37,7 +50,7 @@ ${formData.complemento ? `• Complemento: ${formData.complemento}\n` : ''}• B
 • Produto: Almofada Ergonômica Corretora de Postura
 • Cores e Quantidades:
 ${coresSelecionadas}
-• Quantidade Total: ${Object.values(formData.quantidadePorCor).reduce((a, b) => a + b, 0)}
+• Quantidade Total: ${Object.values(formData.quantidadePorCor).reduce((a: number, b: number) => a + b, 0)}
 • Valor Total: *R$ ${valorTotal.toFixed(2)}*
 
 _Agradecemos pela preferência!_ ✨`;
@@ -97,3 +110,4 @@ _Agradecemos pela preferência!_ ✨`;
     </div>
   );
 };
+
