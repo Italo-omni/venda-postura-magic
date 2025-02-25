@@ -1,3 +1,4 @@
+
 import { HeroSection } from "@/components/HeroSection";
 import { Benefits } from "@/components/Benefits";
 import { Gallery } from "@/components/Gallery";
@@ -6,7 +7,6 @@ import { ShippingCalculator } from "@/components/ShippingCalculator";
 import { RecentSales } from "@/components/RecentSales";
 import { useEffect } from "react";
 import { trackEvent } from "@/utils/metaPixel";
-import { ShoppingBag } from "lucide-react";
 
 const Index = () => {
   useEffect(() => {
@@ -28,8 +28,6 @@ const Index = () => {
       <Testimonials />
       <ShippingCalculator />
       {/* <RecentSales /> */}
-
-       
     </main>
   );
 };
