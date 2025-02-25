@@ -21,7 +21,6 @@ interface FormActionsProps {
 
 export const FormActions = ({ formData, isValid }: FormActionsProps) => {
   const generateWhatsAppMessage = () => {
-    // Gera o resumo das cores selecionadas
     const coresSelecionadas = Object.entries(formData.quantidadePorCor)
       .filter(([_, quantidade]) => quantidade > 0)
       .map(([cor, quantidade]) => `• ${cor.charAt(0).toUpperCase() + cor.slice(1)}: ${quantidade}`)
@@ -110,4 +109,3 @@ _Agradecemos pela preferência!_ ✨`;
     </div>
   );
 };
-
