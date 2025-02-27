@@ -1,9 +1,4 @@
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 [build]
   command = "npm run build"
   publish = "dist"
@@ -13,3 +8,8 @@
   framework = "#custom"
   port = 5173
   targetPort = 5173
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
