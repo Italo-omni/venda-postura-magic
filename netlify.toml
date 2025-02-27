@@ -3,3 +3,13 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[dev]
+  command = "npm run dev"
+  framework = "#custom"
+  port = 5173
+  targetPort = 5173
