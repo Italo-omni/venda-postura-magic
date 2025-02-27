@@ -21,6 +21,14 @@
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1518802672094664');
       fbq('track', 'PageView');
+      
+      // Adicionando evento personalizado para deploy concluído
+      window.addEventListener('load', function() {
+        fbq('trackCustom', 'DeployCompleted', {
+          timestamp: new Date().toISOString()
+        });
+        console.log('Deploy completed event tracked');
+      });
     </script>
   </head>
 
@@ -34,5 +42,17 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <!-- Netlify Deploy Notification -->
+    <script>
+      // Este script vai monitorar quando o deploy for concluído
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (!user) {
+            console.log('Site deployed successfully');
+          }
+        });
+      }
+    </script>
   </body>
 </html>

@@ -13,3 +13,11 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Configuração de notificações
+[build.success]
+  webhook = "${DEPLOY_WEBHOOK_URL}"
+
+[build.environment]
+  NODE_VERSION = "18"
+
